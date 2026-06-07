@@ -1,20 +1,96 @@
-# React + Vite
+# 💻 Reezma Hanan - Personal Portfolio Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, interactive, and responsive personal portfolio website showcasing software engineering projects, academic coursework, professional certifications, and technical skills.
 
-Currently, two official plugins are available:
+---
 
-PORTFOLIO STATUS: ✅ COMPLETE & READY FOR SUBMISSION
+## 🚀 Live Demo & Deployment
+* **Framework:** React 19 (Vite)
+* **Styling:** Vanilla CSS (Glassmorphism & Ambient Shadows)
+* **Icons:** Lucide React
+* **Deployment:** Netlify
 
-For detailed information, see:
-- HCI_REPORT.md - Complete written report (30%)
-- DEPLOYMENT_GUIDE.md - How to deploy
-- SUBMISSION_CHECKLIST.md - Final checklist
+---
 
-Expected Score: 93-100/100
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **Interactive Hero Landing Page**: Features a dynamic typewriter role rotator, staggered stat counters, and floating interactive skill badges.
+* **Responsive Layouts**: Designed for visual excellence across desktop, tablet, and mobile screens.
+* **Academic Highlights**: Showcases education details, certifications, and active open-source contributions.
+* **Dynamic Certificates Filter**: Filter and verify certificates across different categories (Programming, Web, Cloud, Databases, Security).
+* **Projects Showcase**: Interactive cards featuring links to code repositories, live demos, and proof credentials.
+* **Modern Contact Form**: Clean form validation with user-friendly error handling.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+
+* **Core:** React.js 19
+* **Build Tool:** Vite
+* **Routing:** React Router v7
+* **Icons:** Lucide React
+* **Hosting:** Netlify (configured via `netlify.toml`)
+
+---
+
+## 📂 Project Structure
+
+```text
+reezma-portfolio/
+├── public/                 # Static assets (CV PDF, project screenshots, logos)
+├── src/
+│   ├── components/         # Page components
+│   │   ├── About.jsx       # Biography and contributor logs
+│   │   ├── Certificates.jsx # Credentials gallery and filter
+│   │   ├── Contact.jsx      # Contact form
+│   │   ├── Education.jsx    # Academic history
+│   │   ├── Footer.jsx       # Dynamic copyright footer
+│   │   ├── Home.jsx         # Hero section & stats
+│   │   ├── Navbar.jsx       # Header and navigation
+│   │   ├── Projects.jsx     # Showcased software projects
+│   │   └── Skills.jsx       # Interactive skill metrics
+│   ├── App.jsx             # Main router definitions
+│   ├── App.css             # Layout animations and shapes
+│   ├── index.css           # Global typography & design system
+│   └── main.jsx            # React mounting hook
+├── package.json            # Node dependency configuration
+├── vite.config.js          # Vite configuration
+└── netlify.toml            # Netlify deployment parameters
+```
+
+---
+
+## 💻 Local Development Setup
+
+To run this project locally, follow these steps:
+
+### Prerequisites
+Make sure you have [Node.js](https://nodejs.org/) installed.
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/reezmahanan/Reezma-Hanan-Portfolio.git
+cd reezma-portfolio
+```
+
+### 2. Install dependencies
+```bash
+npm install
+```
+
+### 3. Run development server
+```bash
+npm run dev
+```
+Open [http://localhost:5173](http://localhost:5173) in your browser.
+
+### 4. Build for production
+```bash
+npm run build
+```
+The compiled, optimized bundle will be generated inside the `dist/` directory.
+
+---
+
+## 📄 License
+This project is open-source and available under the MIT License.
