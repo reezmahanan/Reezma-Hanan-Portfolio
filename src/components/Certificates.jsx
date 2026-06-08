@@ -24,7 +24,7 @@ function Certificates() {
       verifyUrl: 'https://open.uom.lk/lms/mod/customcert/view.php?id=697&downloadown=1' 
     },
     { 
-      name: 'Python for Beginners', 
+      name: 'Introduction to Python',
       issuer: 'SoloLearn', 
       category: 'programming', 
       icon: <Code size={24} />, 

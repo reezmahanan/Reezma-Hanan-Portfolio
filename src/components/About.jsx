@@ -190,7 +190,7 @@ function About() {
                   textAlign: 'center'
                 }}
               >
-                📸 Contribution Evidence
+                 Contribution Evidence
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: '1rem' }}>
                 {proofImages.map((proof, idx) => (
@@ -278,7 +278,7 @@ function About() {
         {/* Quick Highlights */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           <h3 style={{ textAlign: 'center', color: '#fff', fontSize: '1.8rem', fontWeight: 700 }}>
-            🌟 Quick Highlights
+             Quick Highlights
           </h3>
           <div className="grid-3">
             {highlights.map((h, i) => (

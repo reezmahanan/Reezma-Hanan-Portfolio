@@ -239,7 +239,7 @@ function Skills() {
               gap: '0.5rem' 
             }}
           >
-            📚 Learning Platforms & Academic Environments
+             Learning Platforms & Academic Environments
           </h3>
           
           <div 

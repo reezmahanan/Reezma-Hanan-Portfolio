@@ -2,24 +2,25 @@ import ProjectCard from './ProjectCard';
 
 function Projects() {
   const projects = [
+      {
+          title: 'Event Hub - Student Event Management',
+          description: 'An academic event scheduling and coordination web application. Supports user authentication, event registration, organizer controls, administrative dashboards, and email notifications.',
+          tech: ['PHP', 'MySQL', 'JavaScript', 'HTML5', 'CSS3'],
+          github: 'https://github.com/reezmahanan/Student-Event-Management-Web-Application',
+          live: '#',
+          image: '/Event Hub.png'
+      },
     {
-      title: 'SCM - Inventory Management System',
+      title: 'SCM - Inventory Management System(Group Project)',
       description: 'A full-stack supply chain and stock management system with interactive inventory tracking dashboards, supplier control, user roles, invoice publishing, and database backup features.',
       tech: ['React', 'Spring Boot', 'MySQL', 'REST APIs', 'Java'],
       github: 'https://github.com/reezmahanan/SCM-IMS',
       live: '#',
       image: '/Inventory Management System.png'
     },
+
     {
-      title: 'Event Hub - Student Event Management',
-      description: 'An academic event scheduling and coordination web application. Supports user authentication, event registration, organizer controls, administrative dashboards, and email notifications.',
-      tech: ['PHP', 'MySQL', 'JavaScript', 'HTML5', 'CSS3'],
-      github: 'https://github.com/reezmahanan/Student-Event-Management-Web-Application',
-      live: '#',
-      image: '/Event Hub.png'
-    },
-    {
-      title: 'Book Nest - Bookstore E-Commerce',
+      title: 'Book Nest - Bookstore E-Commerce(Group Project)',
       description: 'An online bookstore e-commerce platform. Features include a dynamic book catalog, custom search, multi-level category navigation, user shopping carts, checkout invoices, and client dashboards.',
       tech: ['PHP', 'MySQL', 'JavaScript', 'HTML5', 'CSS3'],
       github: 'https://github.com/reezmahanan/BookNest',
@@ -35,7 +36,7 @@ function Projects() {
       image: '/ReciPick.png'
     },
     {
-      title: 'CareerBridge - Job Placement Platform',
+      title: 'CareerBridge - Job Placement Platform(Frontend)',
       description: 'A responsive web portal designed to connect graduating students and interns with recruiters, featuring categorical search filters, placement application records, and job details panels.',
       tech: ['HTML5', 'CSS3', 'JavaScript'],
       github: 'https://github.com/reezmahanan/CareerBridge',
@@ -43,7 +44,7 @@ function Projects() {
       image: '/Career Bridge.png'
     },
     {
-      title: 'Reezma Tech Services - IT Agency Website',
+      title: 'Reezma Tech Services - IT Agency Website(Frontend)',
       description: 'A commercial marketing landing page for a freelance IT support and software agency. Showcases technical services offerings, dynamic pricing tiers, and client quotation requests.',
       tech: ['HTML5', 'CSS3', 'JavaScript'],
       github: 'https://github.com/reezmahanan/Reezma-Tech-Services',
