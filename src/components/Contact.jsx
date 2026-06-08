@@ -17,28 +17,36 @@ function Contact() {
     return newErrors;
   };
 
-  const encode = (data) => {
-    return Object.keys(data)
-      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
-      .join("&");
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const newErrors = validateForm();
     if (Object.keys(newErrors).length === 0) {
       setIsSending(true);
-      fetch("/", {
+      fetch("https://formsubmit.co/ajax/reezmahanan@gmail.com", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: encode({ "form-name": "contact", ...formData })
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message
+        })
       })
-        .then(() => {
-          setSubmitted(true);
-          setFormData({ name: '', email: '', subject: '', message: '' });
-          setErrors({});
-          setIsSending(false);
-          setTimeout(() => setSubmitted(false), 5000);
+        .then(response => response.json())
+        .then(data => {
+          if (data.success === "true") {
+            setSubmitted(true);
+            setFormData({ name: '', email: '', subject: '', message: '' });
+            setErrors({});
+            setIsSending(false);
+            setTimeout(() => setSubmitted(false), 5000);
+          } else {
+            console.error("FormSubmit error:", data);
+            setIsSending(false);
+          }
         })
         .catch(error => {
           console.error("Form submission error:", error);
@@ -264,15 +272,10 @@ function Contact() {
 
             {/* Contact Form */}
             <form 
-              name="contact" 
-              method="POST" 
-              data-netlify="true" 
               onSubmit={handleSubmit} 
               aria-label="Contact form" 
               style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}
             >
-              {/* Hidden input for Netlify bot detection */}
-              <input type="hidden" name="form-name" value="contact" />
               {submitted && (
                 <div 
                   role="alert" 
