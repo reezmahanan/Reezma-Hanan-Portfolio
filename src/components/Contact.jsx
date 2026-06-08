@@ -5,6 +5,7 @@ function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
   const [errors, setErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [isSending, setIsSending] = useState(false);
 
   const validateForm = () => {
     const newErrors = {};
@@ -16,14 +17,33 @@ function Contact() {
     return newErrors;
   };
 
+  const encode = (data) => {
+    return Object.keys(data)
+      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+      .join("&");
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const newErrors = validateForm();
     if (Object.keys(newErrors).length === 0) {
-      setSubmitted(true);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      setErrors({});
-      setTimeout(() => setSubmitted(false), 5000);
+      setIsSending(true);
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encode({ "form-name": "contact", ...formData })
+      })
+        .then(() => {
+          setSubmitted(true);
+          setFormData({ name: '', email: '', subject: '', message: '' });
+          setErrors({});
+          setIsSending(false);
+          setTimeout(() => setSubmitted(false), 5000);
+        })
+        .catch(error => {
+          console.error("Form submission error:", error);
+          setIsSending(false);
+        });
     } else {
       setErrors(newErrors);
     }
@@ -243,7 +263,16 @@ function Contact() {
             </div>
 
             {/* Contact Form */}
-            <form onSubmit={handleSubmit} aria-label="Contact form" style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+            <form 
+              name="contact" 
+              method="POST" 
+              data-netlify="true" 
+              onSubmit={handleSubmit} 
+              aria-label="Contact form" 
+              style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}
+            >
+              {/* Hidden input for Netlify bot detection */}
+              <input type="hidden" name="form-name" value="contact" />
               {submitted && (
                 <div 
                   role="alert" 
@@ -444,6 +473,7 @@ function Contact() {
               <button 
                 type="submit" 
                 className="btn btn-primary"
+                disabled={isSending}
                 style={{ 
                   marginTop: '0.5rem',
                   width: '100%',
@@ -456,10 +486,12 @@ function Contact() {
                   fontSize: '0.95rem',
                   fontWeight: '700',
                   background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
-                  boxShadow: '0 4px 15px rgba(37, 99, 235, 0.2)'
+                  boxShadow: '0 4px 15px rgba(37, 99, 235, 0.2)',
+                  opacity: isSending ? 0.7 : 1,
+                  cursor: isSending ? 'not-allowed' : 'pointer'
                 }}
               >
-                <Send size={16} /> Send Message
+                <Send size={16} /> {isSending ? 'Sending Message...' : 'Send Message'}
               </button>
 
               {/* Bottom security text */}
