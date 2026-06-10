@@ -29,7 +29,7 @@ function Certificates() {
       category: 'programming', 
       icon: <Code size={24} />, 
       image: '/indrouction to python.png',
-      verifyUrl: 'https://api2.sololearn.com/v2/certificates/CC-ZZGGBJBM/image/png?t=638965751414194114' 
+      verifyUrl: 'https://www.sololearn.com/certificates/CC-ANH74SBO' 
     },
     { 
       name: 'SQL', 
@@ -37,7 +37,7 @@ function Certificates() {
       category: 'database', 
       icon: <Database size={24} />, 
       image: '/introduction to sql.png',
-      verifyUrl: 'https://api2.sololearn.com/v2/certificates/CC-ZZGGBJBM/image/png?t=638965751414194114' 
+      verifyUrl: 'https://www.sololearn.com/certificates/CC-ZZGGBJBM' 
     },
     { 
       name: 'HTML', 
@@ -45,7 +45,7 @@ function Certificates() {
       category: 'web', 
       icon: <Layout size={24} />, 
       image: '/introduction to html.png',
-      verifyUrl: 'https://api2.sololearn.com/v2/certificates/CC-RBU2XEQB/image/png?t=638857708473986790' 
+      verifyUrl: 'https://www.sololearn.com/certificates/CC-RBU2XEQB' 
     },
     { 
       name: 'Java', 
@@ -53,7 +53,7 @@ function Certificates() {
       category: 'programming', 
       icon: <Code size={24} />, 
       image: '/introduction to java.png',
-      verifyUrl: 'https://api2.sololearn.com/v2/certificates/CC-SQOTIPNO/image/png?t=638900670629150830' 
+      verifyUrl: 'https://www.sololearn.com/certificates/CC-SQOTIPNO' 
     },
     { 
       name: 'Introduction to Git', 
@@ -93,7 +93,7 @@ function Certificates() {
       category: 'web', 
       icon: <Layout size={24} />, 
       image: '/ui ux for beginners.png',
-      verifyUrl: 'https://www.mygreatlearning.com/certificate/QYCNOODA' 
+      verifyUrl: 'https://www.mygreatlearning.com/certificate/UBKRGSMR' 
     },
     { 
       name: 'HTML', 
@@ -109,7 +109,7 @@ function Certificates() {
       category: 'database', 
       icon: <Database size={24} />, 
       image: '/my sql tutorial.png',
-      verifyUrl: 'https://www.mygreatlearning.com/certificate/YADZEDEN' 
+      verifyUrl: 'https://www.mygreatlearning.com/certificate/QYCNOODA' 
     },
     { 
       name: 'Programming Basics', 
@@ -117,7 +117,7 @@ function Certificates() {
       category: 'programming', 
       icon: <Code size={24} />, 
       image: '/programing basics.png',
-      verifyUrl: 'https://www.mygreatlearning.com/certificate/JDWSMZKM' 
+      verifyUrl: '' 
     },
     { 
       name: 'Python Fundamentals for Beginners', 
@@ -125,7 +125,7 @@ function Certificates() {
       category: 'programming', 
       icon: <Code size={24} />, 
       image: '/Pythonfuntamentals for beginners.png',
-      verifyUrl: 'https://www.mygreatlearning.com/certificate/UBKRGSMR' 
+      verifyUrl: 'https://www.mygreatlearning.com/certificate/YADZEDEN' 
     },
     { 
       name: 'Python Project for Beginners', 
@@ -133,7 +133,7 @@ function Certificates() {
       category: 'programming', 
       icon: <Code size={24} />, 
       image: '/python project for beginners.png',
-      verifyUrl: 'https://www.mygreatlearning.com' 
+      verifyUrl: 'https://www.mygreatlearning.com/certificate/JDWSMZKM' 
     },
     { 
       name: 'OOPs in Java', 
@@ -205,7 +205,7 @@ function Certificates() {
       category: 'database', 
       icon: <Database size={24} />, 
       image: '/sql basic.png',
-      verifyUrl: 'https://www.hackerrank.com/certificates/eed1e604468e' 
+      verifyUrl: 'https://www.hackerrank.com/certificates/259d46322eb5' 
     },
     { 
       name: 'Front-End Web Development', 
@@ -237,7 +237,7 @@ function Certificates() {
       category: 'tools', 
       icon: <Cpu size={24} />, 
       image: '/docker for beginners.png',
-      verifyUrl: 'https://learn.microsoft.com/en-us/users/reezmahanan-2643/achievements/print/uar62j53' 
+      verifyUrl: '' 
     },
   ];
 
@@ -334,7 +334,7 @@ function Certificates() {
               gap: '0.5rem'
             }}
           >
-            <Award size={18} /> Certificates ({certificates.length})
+            <Award size={18} /> Certificates
           </button>
           <button
             onClick={() => setActiveTab('badges')}
@@ -354,7 +354,7 @@ function Certificates() {
               gap: '0.5rem'
             }}
           >
-            <ShieldCheck size={18} /> Badges ({badges.length})
+            <ShieldCheck size={18} /> Badges
           </button>
         </div>
 

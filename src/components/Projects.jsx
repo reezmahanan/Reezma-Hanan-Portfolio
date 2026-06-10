@@ -10,6 +10,14 @@ function Projects() {
           live: '#',
           image: '/Event Hub.png'
       },
+      {
+          title: 'Reezma Hanan - Personal Portfolio Website',
+          description: 'A modern, interactive, and responsive personal portfolio website showcasing software engineering projects, academic coursework, professional certifications, and technical skills.',
+          tech: ['React'],
+          github: 'https://github.com/reezmahanan/Reezma-Hanan-Portfolio',
+          live: 'https://spectacular-narwhal-9eb659.netlify.app/',
+          image: '/Portfolio Website.png'
+      },
     {
       title: 'SCM - Inventory Management System(Group Project)',
       description: 'A full-stack supply chain and stock management system with interactive inventory tracking dashboards, supplier control, user roles, invoice publishing, and database backup features.',
@@ -27,12 +35,20 @@ function Projects() {
       live: '#',
       image: '/Book Nest.png'
     },
+      {
+          title: 'Reezma Tech Services - IT Agency Website(Frontend)',
+          description: 'A commercial marketing landing page for a freelance IT support and software agency. Showcases technical services offerings, dynamic pricing tiers, and client quotation requests.',
+          tech: ['HTML5', 'CSS3', 'JavaScript'],
+          github: 'https://github.com/reezmahanan/Reezma-Tech-Services',
+          live: 'https://reezmahanan.github.io/Reezma-tech-services/',
+          image: '/Reezma Tech.png'
+      },
     {
       title: 'ReciPick - Recipe Discovery Application',
       description: 'A responsive cooking recipe explorer. Built with React and Vite, utilizing public culinary APIs to search, filter, and discover food recipes by ingredients and cuisine types.',
       tech: ['React', 'Vite', 'CSS3', 'API Integration', 'JavaScript'],
       github: 'https://github.com/reezmahanan/RECIPICK',
-      live: '#',
+      live: 'https://recipick-wine.vercel.app/',
       image: '/ReciPick.png'
     },
     {
@@ -40,16 +56,16 @@ function Projects() {
       description: 'A responsive web portal designed to connect graduating students and interns with recruiters, featuring categorical search filters, placement application records, and job details panels.',
       tech: ['HTML5', 'CSS3', 'JavaScript'],
       github: 'https://github.com/reezmahanan/CareerBridge',
-      live: '#',
+      live: 'https://reezmahanan.github.io/CareerBridge/',
       image: '/Career Bridge.png'
     },
     {
-      title: 'Reezma Tech Services - IT Agency Website(Frontend)',
-      description: 'A commercial marketing landing page for a freelance IT support and software agency. Showcases technical services offerings, dynamic pricing tiers, and client quotation requests.',
+      title: 'TasteVerse Restaurant Website(Frontend)',
+      description: 'A visually stunning and fully responsive restaurant landing page presenting menus, dining experiences, and table booking requests with modern design.',
       tech: ['HTML5', 'CSS3', 'JavaScript'],
-      github: 'https://github.com/reezmahanan/Reezma-Tech-Services',
-      live: '#',
-      image: '/Reezma Tech.png'
+      github: 'https://github.com/reezmahanan/Taste-Verse',
+      live: 'https://reezmahanan.github.io/Taste-Verse/',
+      image: '/Tasteverse.png'
     },
   ];
 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, MapPin, User, Tag, MessageSquare, Lock, Calendar, Check, Send } from 'lucide-react';
+import { Mail, MapPin, User, Tag, MessageSquare, Lock, Calendar, Check, Send, X, Code } from 'lucide-react';
 
 function Contact() {
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
@@ -96,6 +96,18 @@ function Contact() {
       label: 'GitHub', 
       value: 'github.com/reezmahanan', 
       link: 'https://github.com/reezmahanan' 
+    },
+    { 
+      icon: <Code size={18} style={{ color: '#38bdf8' }} />, 
+      label: 'Google Dev', 
+      value: 'g.dev/reezmahanan', 
+      link: 'https://g.dev/reezmahanan' 
+    },
+    { 
+      icon: <X size={18} style={{ color: '#38bdf8' }} />, 
+      label: 'X (Twitter)', 
+      value: 'x.com/HananReezma', 
+      link: 'https://x.com/HananReezma' 
     },
   ];
 

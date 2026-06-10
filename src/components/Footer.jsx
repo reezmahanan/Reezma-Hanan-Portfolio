@@ -112,6 +112,38 @@ function Footer() {
                 HackerRank
               </a>
               <a 
+                href="https://g.dev/reezmahanan" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                style={{ 
+                  color: 'var(--text-secondary)', 
+                  textDecoration: 'none', 
+                  fontSize: '0.8rem',
+                  fontWeight: 600,
+                  transition: 'var(--transition)' 
+                }} 
+                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--secondary)'} 
+                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}
+              >
+                Google Dev
+              </a>
+              <a 
+                href="https://x.com/HananReezma" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                style={{ 
+                  color: 'var(--text-secondary)', 
+                  textDecoration: 'none', 
+                  fontSize: '0.8rem',
+                  fontWeight: 600,
+                  transition: 'var(--transition)' 
+                }} 
+                onMouseEnter={(e) => e.currentTarget.style.color = 'var(--secondary)'} 
+                onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}
+              >
+                X (Twitter)
+              </a>
+              <a 
                 href="mailto:reezmahanan@gmail.com" 
                 style={{ 
                   color: 'var(--text-secondary)', 

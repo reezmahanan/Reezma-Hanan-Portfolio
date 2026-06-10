@@ -49,7 +49,7 @@ function Home() {
     }, 50);
 
     const intervalProj = setInterval(() => {
-      setProjectCount(c => (c < 5 ? c + 1 : c));
+      setProjectCount(c => (c < 8 ? c + 1 : c));
     }, 40);
 
     const intervalCert = setInterval(() => {
