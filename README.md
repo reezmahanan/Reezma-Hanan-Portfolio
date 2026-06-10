@@ -5,6 +5,7 @@ A modern, interactive, and responsive personal portfolio website showcasing soft
 ---
 
 ## 🚀 Live Demo & Deployment
+* **Live Link:** [spectacular-narwhal-9eb659.netlify.app](https://spectacular-narwhal-9eb659.netlify.app/)
 * **Framework:** React 19 (Vite)
 * **Styling:** Vanilla CSS (Glassmorphism & Ambient Shadows)
 * **Icons:** Lucide React
@@ -89,6 +90,19 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 npm run build
 ```
 The compiled, optimized bundle will be generated inside the `dist/` directory.
+
+---
+
+## 🔗 Connect With Me
+
+Let's collaborate or chat about technology! Feel free to reach out on any of these platforms:
+
+* **LinkedIn:** [linkedin.com/in/reezma-hanan](https://linkedin.com/in/reezma-hanan)
+* **GitHub:** [github.com/reezmahanan](https://github.com/reezmahanan)
+* **Google Dev Profile:** [g.dev/reezmahanan](https://g.dev/reezmahanan)
+* **X (Twitter):** [x.com/HananReezma](https://x.com/HananReezma)
+* **HackerRank:** [hackerrank.com/profile/reezmahanan](https://www.hackerrank.com/profile/reezmahanan)
+* **Email:** [reezmahanan@gmail.com](mailto:reezmahanan@gmail.com)
 
 ---
 
