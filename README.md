@@ -107,4 +107,4 @@ Let's collaborate or chat about technology! Feel free to reach out on any of the
 ---
 
 ## 📄 License
-This project is open-source and available under the MIT License.
+This project is open-source and available for educational purposes.
