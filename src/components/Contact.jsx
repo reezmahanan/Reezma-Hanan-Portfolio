@@ -583,7 +583,7 @@ function Contact() {
               className="available-list-wrapper"
             >
               <h4 style={{ color: '#fff', fontSize: '1.2rem', fontWeight: '700', margin: 0 }}>
-                💬 Open For
+                 Open For
               </h4>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
                 {[
