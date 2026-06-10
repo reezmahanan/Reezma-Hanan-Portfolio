@@ -51,6 +51,14 @@ function Projects() {
       live: 'https://recipick-wine.vercel.app/',
       image: '/ReciPick.png'
     },
+      {
+          title: 'TasteVerse Restaurant Website(Frontend)',
+          description: 'A visually stunning and fully responsive restaurant landing page presenting menus, dining experiences, and table booking requests with modern design.',
+          tech: ['HTML5', 'CSS3', 'JavaScript'],
+          github: 'https://github.com/reezmahanan/Taste-Verse',
+          live: 'https://reezmahanan.github.io/Taste-Verse/',
+          image: '/Tasteverse.png'
+      },
     {
       title: 'CareerBridge - Job Placement Platform(Frontend)',
       description: 'A responsive web portal designed to connect graduating students and interns with recruiters, featuring categorical search filters, placement application records, and job details panels.',
@@ -58,14 +66,6 @@ function Projects() {
       github: 'https://github.com/reezmahanan/CareerBridge',
       live: 'https://reezmahanan.github.io/CareerBridge/',
       image: '/Career Bridge.png'
-    },
-    {
-      title: 'TasteVerse Restaurant Website(Frontend)',
-      description: 'A visually stunning and fully responsive restaurant landing page presenting menus, dining experiences, and table booking requests with modern design.',
-      tech: ['HTML5', 'CSS3', 'JavaScript'],
-      github: 'https://github.com/reezmahanan/Taste-Verse',
-      live: 'https://reezmahanan.github.io/Taste-Verse/',
-      image: '/Tasteverse.png'
     },
   ];
 
