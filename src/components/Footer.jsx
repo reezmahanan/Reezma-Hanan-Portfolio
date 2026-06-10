@@ -16,13 +16,12 @@ function Footer() {
     >
       <div className="container">
         <div 
+          className="footer-grid"
           style={{ 
             display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', 
             gap: '1.5rem', 
             marginBottom: '1.5rem' 
           }}
-          className="footer-grid"
         >
           <div>
             <h3 style={{ fontSize: '1.1rem', color: '#fff', marginBottom: '0.4rem', fontWeight: 800 }}>
@@ -62,7 +61,7 @@ function Footer() {
             <h4 style={{ fontSize: '0.9rem', color: '#fff', marginBottom: '0.5rem', fontWeight: 700 }}>
               Let's Connect
             </h4>
-            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
               <a 
                 href="https://github.com/reezmahanan" 
                 target="_blank" 
@@ -182,6 +181,14 @@ function Footer() {
         </div>
 
         <style>{`
+          .footer-grid {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          }
+          @media (min-width: 992px) {
+            .footer-grid {
+              grid-template-columns: 1.2fr 0.8fr 1.5fr;
+            }
+          }
           @media (max-width: 600px) {
             .footer-bottom {
               flex-direction: column !important;
