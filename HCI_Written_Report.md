@@ -34,15 +34,14 @@
      * 3.2.3 Heuristic 3: Aesthetic and Minimalist Design
    * 3.3 Accessibility (A11y) Considerations
    * 3.4 Responsiveness Features
-4. [Project Descriptions](#4-project-descriptions)
-   * 4.1 Event Hub - Student Event Management Web Application
-   * 4.2 SCM - Inventory Management System
-   * 4.3 Reezma Hanan - Personal Portfolio Website
-   * 4.4 Book Nest - Bookstore E-Commerce Platform
-   * 4.5 Reezma Tech Services - IT Agency Website
-   * 4.6 ReciPick - Recipe Discovery Application
-   * 4.7 TasteVerse Restaurant Website
-   * 4.8 CareerBridge - Job Placement Platform
+4. [Project Descriptions (Portfolio Pages & Features)](#4-project-descriptions)
+   * 4.1 Home / Hero Landing Page
+   * 4.2 About Me & Open-Source Contributions
+   * 4.3 Academic Education Timeline
+   * 4.4 Technical & Soft Skills Showcase
+   * 4.5 Filterable Certifications & Badges Gallery
+   * 4.6 Featured Software Projects Grid
+   * 4.7 Validated Contact Form & Connect Options
 5. [Evaluation & Reflection](#5-evaluation--reflection)
    * 5.1 Verification of User Experience (UX)
    * 5.2 Technical Challenges and Solutions
@@ -127,49 +126,61 @@ The portfolio is designed using responsive web principles to verify consistency 
 
 ---
 
-## 4. PROJECT DESCRIPTIONS
+## 4. PROJECT DESCRIPTIONS (PORTFOLIO PAGES & FEATURES)
 
-The portfolio showcases eight software projects developed during coursework and self-directed learning:
+This section describes the layout, structural organization, user interaction features, and screenshots of the **Reezma Hanan Personal Portfolio Website Project** developed for the IS 2304 HCI assignment:
 
-### 4.1 Event Hub - Student Event Management Web Application
-*   **Description:** An academic scheduling, coordination, and user management platform. Supports event registration, organizers controls, administrative dashboards, and automated email notices.
-*   **Tech Stack:** PHP, MySQL, JavaScript, HTML5, CSS3.
-*   **Assets:** [Preview Card Image](file:///c:/Users/HANAN/OneDrive/Desktop/reezma-portfolio/public/Event%20Hub.png) | [GitHub Repository](https://github.com/reezmahanan/Student-Event-Management-Web-Application)
+### 4.1 Home / Hero Landing Page
+*   **Description:** The welcome page that users see when they load the website. It establishes the developer's identity, academic affiliation, and primary competencies.
+*   **Key HCI Features:**
+    *   **Dynamic Role Rotator:** An animated typewriter effect cycles through roles ("IT Undergraduate", "Aspiring Software Engineer", "Full-Stack Developer") to draw the user's focus.
+    *   **Staggered Stats Counters:** Animates counts from 0 up to actual numbers (e.g. 8 Projects, 25 Certifications) on component mount, providing feedback.
+    *   **Actionable CTAs:** Clear button structures for "HIRE ME" (linking to the Contact page) and "DOWNLOAD CV" (triggering CV download).
+*   **Screenshot Reference:** `screenshots/Portfolio Website.png` or `public/Portfolio Website.png`
 
-### 4.2 SCM - Inventory Management System
-*   **Description:** A full-stack supply chain and inventory tracking system featuring Supplier Controls, User Roles, Invoice Publishing, and Database Backup modules.
-*   **Tech Stack:** React, Spring Boot, MySQL, REST APIs, Java.
-*   **Assets:** [Preview Card Image](file:///c:/Users/HANAN/OneDrive/Desktop/reezma-portfolio/public/Inventory%20Management%20System.png) | [GitHub Repository](https://github.com/reezmahanan/SCM-IMS)
+### 4.2 About Me & Open-Source Contributions
+*   **Description:** Contains a detailed bio detailing your academic profile (NDT IT at UOM) and highlights your active involvement in the open-source community.
+*   **Key HCI Features:**
+    *   **Structured Highlights Card:** Groups credentials into three easy-to-read grids (Education, Experience, Achievements) using Lucide React icons.
+    *   **Open-Source Verification:** Hosts contribution proof cards (SWOC and OSCG programs) where users can click to zoom/lightbox the merge certificate screenshots directly inside the browser.
+*   **Screenshot Reference:** `public/SWOC Contributer.jpg` and `public/OSCG Contributer 1.jpg`
 
-### 4.3 Reezma Hanan - Personal Portfolio Website
-*   **Description:** The host portfolio website, implementing professional glassmorphism templates, reactive stats counters, typewriter headings, and structured credentials filters.
-*   **Tech Stack:** React.js, Vite, Vanilla CSS.
-*   **Assets:** [Preview Card Image](file:///c:/Users/HANAN/OneDrive/Desktop/reezma-portfolio/public/Portfolio%20Website.png) | [GitHub Repository](https://github.com/reezmahanan/Reezma-Hanan-Portfolio)
+### 4.3 Academic Education Timeline
+*   **Description:** Formulates your academic background in chronological order, tracing your diploma studies at the University of Moratuwa down to high school.
+*   **Key HCI Features:**
+    *   **Chronological Timeline Grid:** Vertical layout alignment featuring institution logos, years, and specific qualifications, making it easy to scan.
+    *   **Translucent Cards:** Uses glassmorphic borders to isolate each educational milestone.
+*   **Screenshot Reference:** Institution logo images displayed dynamically inside `src/components/Education.jsx`
 
-### 4.4 Book Nest - Bookstore E-Commerce Platform
-*   **Description:** A dynamic online bookstore featuring a book catalog, custom searches, multi-level categorical filters, shopping cart managers, invoice checkers, and dashboard panels.
-*   **Tech Stack:** PHP, MySQL, JavaScript, HTML5, CSS3.
-*   **Assets:** [Preview Card Image](file:///c:/Users/HANAN/OneDrive/Desktop/reezma-portfolio/public/Book%20Nest.png) | [GitHub Repository](https://github.com/reezmahanan/BookNest)
+### 4.4 Technical & Soft Skills Showcase
+*   **Description:** Displays your technical capabilities categorized by layers (Languages, Web Development, Databases, Tools/Methodologies, Cloud, Soft Skills).
+*   **Key HCI Features:**
+    *   **Visual Icon Badges:** Integrates official technology logo vectors (Devicon package URLs) to reduce the user's cognitive load when parsing text lists.
+    *   **Responsive Grids:** Shifts sizes smoothly on smaller resolutions, resizing cards to fit mobile devices.
+*   **Screenshot Reference:** Graphic assets in `src/components/Skills.jsx`
 
-### 4.5 Reezma Tech Services - IT Agency Website
-*   **Description:** A commercial landing page representing freelance IT support packages, showing service tiers and client quotation forms.
-*   **Tech Stack:** HTML5, CSS3, JavaScript.
-*   **Assets:** [Preview Card Image](file:///c:/Users/HANAN/OneDrive/Desktop/reezma-portfolio/public/Reezma%20Tech.png) | [GitHub Repository](https://github.com/reezmahanan/Reezma-Tech-Services)
+### 4.5 Filterable Certifications & Badges Gallery
+*   **Description:** A dynamic gallery of 20+ professional certificates and badges earned from cisco, Microsoft Learn, SoloLearn, and Great Learning Academy.
+*   **Key HCI Features:**
+    *   **Interactive Category Filters:** Tab filters ("All", "Programming", "Web", "Cloud", "Databases", "Security") that immediately filter content on click.
+    *   **Verify Buttons:** Direct links pointing to verified platforms.
+    *   **Zoom Lightbox Modal:** Clicking any certificate opens a blur-backdrop modal with a full-size display of the credential, allowing examiners to inspect the authenticity of certificates.
+*   **Screenshot Reference:** `public/introduction to html.png`, `public/sql basic.png`, and `public/agile scrum fountation.png`
 
-### 4.6 ReciPick - Recipe Discovery Application
-*   **Description:** A responsive recipe search tool. Integrates public culinary APIs to filter food recipes by ingredients and cuisine types.
-*   **Tech Stack:** React, Vite, CSS3, API Integration, JavaScript.
-*   **Assets:** [Preview Card Image](file:///c:/Users/HANAN/OneDrive/Desktop/reezma-portfolio/public/ReciPick.png) | [GitHub Repository](https://github.com/reezmahanan/RECIPICK)
+### 4.6 Featured Software Projects Grid
+*   **Description:** Showcases full-stack applications and frontend designs you developed, including Event Hub, SCM, Book Nest, ReciPick, TasteVerse, and CareerBridge.
+*   **Key HCI Features:**
+    *   **Interactive Project Cards:** Hovering on cards triggers modern ambient shadow expands and image scale-ups.
+    *   **Code and Demo Access:** Clean, labeled CTA buttons for "Code" (linking to GitHub) and "Live Demo" (linking to deployed endpoints).
+*   **Screenshot Reference:** `public/Event Hub.png` and `public/Tasteverse.png`
 
-### 4.7 TasteVerse Restaurant Website
-*   **Description:** A responsive restaurant landing page presenting menu catalogs, dining descriptions, and online table reservations.
-*   **Tech Stack:** HTML5, CSS3, JavaScript.
-*   **Assets:** [Preview Card Image](file:///c:/Users/HANAN/OneDrive/Desktop/reezma-portfolio/public/Tasteverse.png) | [GitHub Repository](https://github.com/reezmahanan/Taste-Verse)
-
-### 4.8 CareerBridge - Job Placement Platform
-*   **Description:** A placement portal designed to connect graduating students with recruiters. Features job filters, application registers, and placement cards.
-*   **Tech Stack:** HTML5, CSS3, JavaScript.
-*   **Assets:** [Preview Card Image](file:///c:/Users/HANAN/OneDrive/Desktop/reezma-portfolio/public/Career%20Bridge.png) | [GitHub Repository](https://github.com/reezmahanan/CareerBridge)
+### 4.7 Responsive Contact Page
+*   **Description:** Contains a validated email contact form and social connection profile shortcuts for users wishing to reach out.
+*   **Key HCI Features:**
+    *   **Active Form Validation:** Client-side checks intercept invalid formats or empty fields, printing clear inline errors.
+    *   **Asynchronous Feedback:** Disabled input fields and a loading indicator ("Sending...") prevent duplicate clicks during API transmission.
+    *   **Layout-Optimized Social Cards:** Custom footer/contact layouts maintain single-line link alignment for profiles (GitHub, LinkedIn, Google Dev, X, Email), preventing messy wrapping.
+*   **Screenshot Reference:** Form validation error layouts and email triggers in `src/components/Contact.jsx`
 
 ---
 
