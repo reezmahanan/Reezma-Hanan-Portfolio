@@ -1,143 +1,123 @@
-import { Calendar, MapPin } from 'lucide-react';
-
-function Education() {
-  const education = [
-    {
-      degree: 'National Diploma in Information Technology (NDT IT)',
-      period: 'Oct 2024 - Present',
-      institution: 'Institute of Technology, University of Moratuwa',
-      location: 'Diyagama, Homagama, Sri Lanka',
-      logo: '/Institute of Technolgy UOM Logo.jpg',
-    },
-    {
-      degree: 'GCE Advanced Level - Physical Science Stream',
-      period: '2018 - 2020',
-      institution: 'BT/BC Oddamavadi Central College National School',
-      location: 'Batticaloa, Sri Lanka',
-      logo: '/Odd.central College Logo.jpg',
-    },
-    {
-      degree: 'GCE Ordinary Level',
-      period: '2007 - 2018',
-      institution: 'BT/BC Oddamavadi Fathima Balika Maha Vidyalaya',
-      location: 'Batticaloa, Sri Lanka',
-      result: "8 A's and B's",
-      logo: '/Odd.Fathima Balika Logo.jpg',
-    },
-  ];
-
+export default function Education() {
   return (
-    <section className="animate-fade-in" style={{ padding: '80px 0' }}>
-      <div className="container" style={{ maxWidth: 800, margin: '0 auto' }}>
-        
-        <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-          <h2 className="gradient-text-primary" style={{ marginBottom: '0.5rem' }}>
-            Academic Background
+    <section className="education section" id="education">
+      <div className="container">
+        <div className="section-hero-header text-center fade-in">
+          <div className="section-pill-wrap">
+            <span className="section-pill-badge">
+              <i className="fas fa-graduation-cap"></i>
+              <span>Education</span>
+            </span>
+          </div>
+
+          <h2 className="section-hero-title">
+            Always Learning.<br />
+            <span className="section-hero-accent">ALWAYS GROWING.</span>
           </h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem' }}>
-            My educational journey and academic qualifications.
+
+          <p className="section-hero-subtitle">
+            Academic foundations, engineering qualifications, and continuous knowledge expansion driving my technical craft.
           </p>
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-          {education.map((item, index) => (
-            <div 
-              key={index} 
-              className="glass-card animate-scale-up"
-              style={{
-                display: 'flex',
-                gap: '1.5rem',
-                padding: '2rem 1.5rem',
-                borderLeft: '4px solid var(--primary)',
-                alignItems: 'center',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'var(--secondary)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'var(--primary)';
-              }}
-            >
-              <div 
-                style={{
-                  width: '56px',
-                  height: '56px',
-                  background: 'rgba(255, 255, 255, 0.05)',
-                  border: '1px solid rgba(255, 255, 255, 0.08)',
-                  borderRadius: '50%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  boxShadow: '0 0 15px rgba(255, 255, 255, 0.05)',
-                  flexShrink: 0,
-                  overflow: 'hidden',
-                }}
-              >
-                {item.logo ? (
-                  <img 
-                    src={item.logo} 
-                    alt={`${item.institution} logo`} 
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      background: '#fff',
-                    }} 
-                  />
-                ) : (
-                  <span style={{ fontSize: '1.5rem' }}>🎓</span>
-                )}
-              </div>
-              <div style={{ flex: 1 }}>
-                <h3 style={{ fontSize: '1.25rem', color: '#fff', marginBottom: '0.5rem', fontWeight: '700' }}>
-                  {item.degree}
-                </h3>
-                <div 
-                  style={{ 
-                    display: 'flex', 
-                    flexWrap: 'wrap', 
-                    gap: '1.25rem', 
-                    marginBottom: '0.75rem', 
-                    color: 'var(--text-secondary)', 
-                    fontSize: '0.9rem',
-                    fontWeight: '500',
-                    alignItems: 'center',
-                  }}
-                >
-                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
-                    <Calendar size={14} /> {item.period}
+        <div className="education-timeline fade-in">
+          {/* Edu Item 1 */}
+          <div className="edu-timeline-item">
+            <div className="edu-timeline-dot"></div>
+            <div className="edu-timeline-content card">
+              <div className="edu-header-wrap">
+                <img
+                  src="/screenshots/Institute of Technolgy UOM Logo.jpg"
+                  alt="ITUM Logo"
+                  className="edu-content-logo"
+                />
+                <div className="edu-header-text">
+                  <span className="edu-date">
+                    <i className="far fa-calendar-alt"></i> Oct 2024 - Present
                   </span>
-                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem' }}>
-                    <MapPin size={14} /> {item.location}
+                  <h4>National Diploma in Information Technology (NDT IT)</h4>
+                  <span className="edu-institution">
+                    Institute of Technology, University of Moratuwa (ITUM), Sri Lanka
                   </span>
                 </div>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem' }}>
-                  {item.institution}
-                </p>
-                {item.result && (
-                  <p 
-                    style={{ 
-                      marginTop: '0.75rem', 
-                      color: 'var(--secondary)', 
-                      fontWeight: '700',
-                      fontSize: '0.9rem',
-                      display: 'inline-block',
-                      background: 'rgba(14, 165, 233, 0.1)',
-                      border: '1px solid rgba(14, 165, 233, 0.2)',
-                      padding: '4px 12px',
-                      borderRadius: '6px',
-                    }}
-                  >
-                    Result: {item.result}
-                  </p>
-                )}
               </div>
+              <span className="edu-loc">
+                <i className="fas fa-map-marker-alt"></i> Diyagama, Homagama, Sri Lanka
+              </span>
+              <span className="edu-grade">
+                <i className="fas fa-award"></i> Latest Semester GPA: 3.72
+              </span>
+              <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginTop: '0.6rem', lineHeight: '1.5' }}>
+                Coursework in Web Development, Digital Marketing, Business Intelligence, Cybersecurity, Databases, and Software Engineering principles. Hands-on training in API design and deploying secure full-stack web applications.
+              </p>
             </div>
-          ))}
+          </div>
+
+          {/* Edu Item 2 */}
+          <div className="edu-timeline-item">
+            <div className="edu-timeline-dot"></div>
+            <div className="edu-timeline-content card">
+              <div className="edu-header-wrap">
+                <img
+                  src="/screenshots/Odd.central College Logo.jpg"
+                  alt="Oddamavadi Central College Logo"
+                  className="edu-content-logo"
+                />
+                <div className="edu-header-text">
+                  <span className="edu-date">
+                    <i className="far fa-calendar-alt"></i> 2018 - 2020
+                  </span>
+                  <h4>GCE Advanced Level - Physical Science Stream</h4>
+                  <span className="edu-institution">
+                    BT/BC Oddamavadi Central College, Batticaloa, Sri Lanka
+                  </span>
+                </div>
+              </div>
+              <span className="edu-loc">
+                <i className="fas fa-map-marker-alt"></i> Oddamavadi, Batticaloa, Sri Lanka
+              </span>
+              <span className="edu-grade">
+                <i className="fas fa-award"></i> Physical Science Stream
+              </span>
+              <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginTop: '0.6rem', lineHeight: '1.5' }}>
+                Focused on Combined Mathematics, Physics, and Chemistry. Developed strong analytical thinking, quantitative problem-solving capabilities, and logical foundations.
+              </p>
+            </div>
+          </div>
+
+          {/* Edu Item 3 */}
+          <div className="edu-timeline-item">
+            <div className="edu-timeline-dot"></div>
+            <div className="edu-timeline-content card">
+              <div className="edu-header-wrap">
+                <img
+                  src="/screenshots/Odd.Fathima Balika Logo.jpg"
+                  alt="Oddamavadi Fathima Balika Logo"
+                  className="edu-content-logo"
+                />
+                <div className="edu-header-text">
+                  <span className="edu-date">
+                    <i className="far fa-calendar-alt"></i> 2007 - 2018
+                  </span>
+                  <h4>GCE Ordinary Level</h4>
+                  <span className="edu-institution">
+                    BT/BC Oddamavadi Fathima Balika Maha Vidyalaya
+                  </span>
+                </div>
+              </div>
+              <span className="edu-loc">
+                <i className="fas fa-map-marker-alt"></i> Oddamavadi, Batticaloa, Sri Lanka
+              </span>
+              <span className="edu-grade">
+                <i className="fas fa-award"></i> Passed with 8 A&apos;s and B&apos;s
+              </span>
+              <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', marginTop: '0.6rem', lineHeight: '1.5' }}>
+                Completed secondary education with top honors across Information Technology, Mathematics, Science, and English, laying early interest in computing.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   );
 }
-
-export default Education;

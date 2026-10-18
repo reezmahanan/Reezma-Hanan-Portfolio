@@ -1,650 +1,309 @@
 import { useState } from 'react';
-import { Mail, MapPin, User, Tag, MessageSquare, Lock, Calendar, Check, Send, X, Code } from 'lucide-react';
 
-function Contact() {
-  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
+export default function Contact() {
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [errors, setErrors] = useState({});
-  const [submitted, setSubmitted] = useState(false);
-  const [isSending, setIsSending] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const validateForm = () => {
-    const newErrors = {};
-    if (!formData.name.trim()) newErrors.name = 'Name is required';
-    if (!formData.email.trim()) newErrors.email = 'Email is required';
-    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = 'Email is invalid';
-    if (!formData.subject.trim()) newErrors.subject = 'Subject is required';
-    if (!formData.message.trim()) newErrors.message = 'Message is required';
-    return newErrors;
+  const validate = () => {
+    const errs = {};
+    if (!formData.name.trim() || formData.name.trim().length < 2) {
+      errs.name = 'Please provide a valid name (at least 2 letters).';
+    }
+    if (!formData.email.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      errs.email = 'Please provide a valid email address.';
+    }
+    if (!formData.message.trim() || formData.message.trim().length < 10) {
+      errs.message = 'Please enter a message with at least 10 characters.';
+    }
+    return errs;
   };
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: '' }));
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const newErrors = validateForm();
-    if (Object.keys(newErrors).length === 0) {
-      setIsSending(true);
-      fetch("https://formsubmit.co/ajax/reezmahanan@gmail.com", {
-        method: "POST",
-        headers: { 
-          "Content-Type": "application/json",
-          "Accept": "application/json"
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/reezmahanan@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
         },
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          subject: formData.subject,
-          message: formData.message
-        })
-      })
-        .then(response => response.json())
-        .then(data => {
-          if (data.success === "true") {
-            setSubmitted(true);
-            setFormData({ name: '', email: '', subject: '', message: '' });
-            setErrors({});
-            setIsSending(false);
-            setTimeout(() => setSubmitted(false), 5000);
-          } else {
-            console.error("FormSubmit error:", data);
-            setIsSending(false);
-          }
-        })
-        .catch(error => {
-          console.error("Form submission error:", error);
-          setIsSending(false);
-        });
-    } else {
-      setErrors(newErrors);
+          message: formData.message,
+          _subject: `New Portfolio Message from ${formData.name}`,
+          _template: 'table',
+          _captcha: 'false',
+        }),
+      });
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        alert('Could not submit form directly. Opening your default mail client as fallback.');
+        window.location.href = `mailto:reezmahanan@gmail.com?subject=Portfolio Inquiry from ${encodeURIComponent(
+          formData.name
+        )}&body=${encodeURIComponent(formData.message)}`;
+      }
+    } catch {
+      window.location.href = `mailto:reezmahanan@gmail.com?subject=Portfolio Inquiry from ${encodeURIComponent(
+        formData.name
+      )}&body=${encodeURIComponent(formData.message)}`;
+    } finally {
+      setIsSubmitting(false);
     }
   };
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-    if (errors[e.target.name]) {
-      setErrors({ ...errors, [e.target.name]: '' });
-    }
-  };
-
-  const contactInfo = [
-    { 
-      icon: <Mail size={18} style={{ color: '#38bdf8' }} />, 
-      label: 'Email', 
-      value: 'reezmahanan@gmail.com', 
-      link: 'mailto:reezmahanan@gmail.com' 
-    },
-    { 
-      icon: <MapPin size={18} style={{ color: '#38bdf8' }} />, 
-      label: 'Location', 
-      value: 'Batticaloa, Sri Lanka', 
-      link: null 
-    },
-    { 
-      icon: <img 
-        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" 
-        alt="LinkedIn" 
-        style={{ width: '18px', height: '18px', objectFit: 'contain' }} 
-      />, 
-      label: 'LinkedIn', 
-      value: 'linkedin.com/in/reezma-hanan', 
-      link: 'https://linkedin.com/in/reezma-hanan' 
-    },
-    { 
-      icon: <img 
-        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" 
-        alt="GitHub" 
-        style={{ width: '18px', height: '18px', objectFit: 'contain', filter: 'invert(1) brightness(1.5)' }} 
-      />, 
-      label: 'GitHub', 
-      value: 'github.com/reezmahanan', 
-      link: 'https://github.com/reezmahanan' 
-    },
-    { 
-      icon: <Code size={18} style={{ color: '#38bdf8' }} />, 
-      label: 'Google Dev', 
-      value: 'g.dev/reezmahanan', 
-      link: 'https://g.dev/reezmahanan' 
-    },
-    { 
-      icon: <X size={18} style={{ color: '#38bdf8' }} />, 
-      label: 'X (Twitter)', 
-      value: 'x.com/HananReezma', 
-      link: 'https://x.com/HananReezma' 
-    },
-  ];
 
   return (
-    <section className="animate-fade-in" style={{ padding: '80px 0' }}>
-      <div className="container" style={{ display: 'flex', flexDirection: 'column', gap: '3.5rem' }}>
-        
-        {/* Main Grid: Left Details & Right Form */}
-        <div 
-          className="contact-main-grid"
-          style={{ 
-            display: 'grid', 
-            gridTemplateColumns: '1fr 1.1fr', 
-            gap: '4rem',
-            alignItems: 'start'
-          }}
-        >
-          {/* Left Side: Text and Contact Cards */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            {/* Let's Connect Badge */}
-            <div style={{
-              display: 'inline-flex',
-              alignSelf: 'flex-start',
-              alignItems: 'center',
-              gap: '0.4rem',
-              background: 'rgba(59, 130, 246, 0.1)',
-              border: '1px solid rgba(59, 130, 246, 0.25)',
-              padding: '6px 14px',
-              borderRadius: '20px',
-              color: '#3b82f6',
-              fontSize: '0.75rem',
-              fontWeight: '700',
-              textTransform: 'uppercase',
-              letterSpacing: '0.5px'
-            }}>
-              <Mail size={12} /> Let's Connect
+    <section className="contact section" id="contact">
+      <div className="container">
+        <div className="section-hero-header text-center fade-in">
+          <div className="section-pill-wrap">
+            <span className="section-pill-badge">
+              <i className="fas fa-envelope"></i>
+              <span>Contact</span>
+            </span>
+          </div>
+
+          <h2 className="section-hero-title">
+            Let&apos;s Connect.<br />
+            <span className="section-hero-accent">BUILD TOGETHER.</span>
+          </h2>
+
+          <p className="section-hero-subtitle">
+            Open for software engineering opportunities, impactful collaborations, and innovative conversations. Let&apos;s build something remarkable.
+          </p>
+        </div>
+
+        <div className="contact-grid">
+          <div className="contact-info fade-in">
+            <h3>Get in Touch</h3>
+            <p>
+              I&apos;m always open to discussing projects, web development collaborations, or just having a chat about technology and innovation.
+            </p>
+
+            <div className="contact-details">
+              <div className="detail-item">
+                <i className="fas fa-envelope"></i>
+                <div>
+                  <strong>Email</strong>
+                  <a href="mailto:reezmahanan@gmail.com">reezmahanan@gmail.com</a>
+                </div>
+              </div>
+
+              <div className="detail-item">
+                <i className="fab fa-linkedin"></i>
+                <div>
+                  <strong>LinkedIn</strong>
+                  <a href="https://linkedin.com/in/reezma-hanan" target="_blank" rel="noreferrer">
+                    linkedin.com/in/reezma-hanan
+                  </a>
+                </div>
+              </div>
+
+              <div className="detail-item">
+                <i className="fab fa-github"></i>
+                <div>
+                  <strong>GitHub</strong>
+                  <a href="https://github.com/reezmahanan" target="_blank" rel="noreferrer">
+                    github.com/reezmahanan
+                  </a>
+                </div>
+              </div>
+
+              <div className="detail-item">
+                <i className="fab fa-hackerrank"></i>
+                <div>
+                  <strong>HackerRank</strong>
+                  <a href="https://www.hackerrank.com/profile/reezmahanan" target="_blank" rel="noreferrer">
+                    hackerrank.com/reezmahanan
+                  </a>
+                </div>
+              </div>
+
+              <div className="detail-item">
+                <i className="fab fa-medium"></i>
+                <div>
+                  <strong>Medium</strong>
+                  <a href="https://medium.com/@reezmahanan" target="_blank" rel="noreferrer">
+                    medium.com/@reezmahanan
+                  </a>
+                </div>
+              </div>
+
+              <div className="detail-item">
+                <i className="fas fa-globe"></i>
+                <div>
+                  <strong>Portfolio Site</strong>
+                  <a href="https://portfolio-website-7mdi.vercel.app" target="_blank" rel="noreferrer">
+                    portfolio-website-7mdi.vercel.app
+                  </a>
+                </div>
+              </div>
+
+              <div className="detail-item">
+                <i className="fas fa-map-marker-alt"></i>
+                <div>
+                  <strong>Location</strong>
+                  <span>Batticaloa, Sri Lanka</span>
+                </div>
+              </div>
             </div>
 
-            <h2 style={{
-              textAlign: 'left',
-              fontSize: '3rem',
-              fontWeight: '800',
-              lineHeight: '1.15',
-              margin: '0 0 2rem 0',
-              color: '#fff',
-              letterSpacing: '-1px'
-            }}>
-              Let's Build <br />
-              <span style={{ 
-                color: '#3b82f6', 
-                fontFamily: 'inherit',
-                fontWeight: '900',
-                textTransform: 'uppercase',
-                display: 'inline-block',
-                margin: '4px 0'
-              }}>Something Amazing</span> <br />
-              Together!
-            </h2>
+            {/* Connect Interests */}
+            <div className="open-for-box card fade-in" style={{ marginTop: '2rem', padding: '1.75rem' }}>
+              <h4
+                style={{
+                  marginBottom: '1.25rem',
+                  color: 'var(--text-color)',
+                  fontWeight: 700,
+                  fontSize: '1rem',
+                  borderLeft: '3px solid var(--primary-color)',
+                  paddingLeft: '0.5rem',
+                }}
+              >
+                Open For
+              </h4>
 
-            <h4 style={{ color: '#fff', fontSize: '1.2rem', fontWeight: '700', margin: '0 0 0.5rem 0' }}>
-              Get in Touch
-            </h4>
-
-            {/* List of Contact Cards */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              {contactInfo.map((info, index) => (
-                <div 
-                  key={index} 
-                  className="glass-card"
-                  style={{ 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    gap: '1.25rem',
-                    padding: '16px 20px',
-                    borderRadius: '16px',
-                    border: '1px solid rgba(255, 255, 255, 0.05)',
-                    background: 'rgba(13, 17, 28, 0.4)',
-                    boxShadow: 'none',
-                    transition: 'var(--transition)'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'rgba(59, 130, 246, 0.2)';
-                    e.currentTarget.style.background = 'rgba(13, 17, 28, 0.6)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.05)';
-                    e.currentTarget.style.background = 'rgba(13, 17, 28, 0.4)';
-                  }}
-                >
-                  <div 
-                    style={{ 
-                      width: 40, 
-                      height: 40, 
-                      background: 'rgba(56, 189, 248, 0.08)', 
-                      border: '1px solid rgba(56, 189, 248, 0.15)',
-                      borderRadius: '10px', 
-                      display: 'flex', 
-                      alignItems: 'center', 
-                      justifyContent: 'center', 
-                      color: '#38bdf8',
-                      flexShrink: 0
-                    }}
-                  >
-                    {info.icon}
-                  </div>
-                  <div>
-                    <strong style={{ display: 'block', color: 'var(--text-secondary)', fontSize: '0.8rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '2px' }}>
-                      {info.label}
-                    </strong>
-                    {info.link ? (
-                      <a 
-                        href={info.link} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        style={{ 
-                          color: '#fff', 
-                          textDecoration: 'none', 
-                          fontSize: '0.95rem',
-                          fontWeight: '600',
-                          transition: 'var(--transition)'
-                        }}
-                        onMouseEnter={(e) => e.currentTarget.style.color = '#3b82f6'}
-                        onMouseLeave={(e) => e.currentTarget.style.color = '#fff'}
-                      >
-                        {info.value}
-                      </a>
-                    ) : (
-                      <p style={{ color: '#fff', fontSize: '0.95rem', fontWeight: '600', margin: 0 }}>
-                        {info.value}
-                      </p>
-                    )}
-                  </div>
+              <div className="open-for-grid">
+                <div className="open-for-item card-item collaborations">
+                  <span className="ofi-icon">
+                    <i className="fas fa-users"></i>
+                  </span>
+                  <span className="ofi-text">Collaborations</span>
                 </div>
-              ))}
+
+                <div className="open-for-item card-item internships">
+                  <span className="ofi-icon">
+                    <i className="fas fa-briefcase"></i>
+                  </span>
+                  <span className="ofi-text">Internship Opportunities</span>
+                </div>
+
+                <div className="open-for-item card-item learning">
+                  <span className="ofi-icon">
+                    <i className="fas fa-graduation-cap"></i>
+                  </span>
+                  <span className="ofi-text">Learning Together</span>
+                </div>
+
+                <div className="open-for-item card-item ideas">
+                  <span className="ofi-icon">
+                    <i className="fas fa-lightbulb"></i>
+                  </span>
+                  <span className="ofi-text">Project Ideas</span>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Right Side: Message Form Card */}
-          <div 
-            className="glass-card"
-            style={{ 
-              padding: '2.5rem',
-              background: 'rgba(10, 15, 30, 0.45)',
-              border: '1px solid rgba(255, 255, 255, 0.06)',
-              borderRadius: '24px',
-              boxShadow: 'var(--glass-shadow)',
-              backdropFilter: 'var(--glass-blur)'
-            }}
-          >
-            {/* Form Header */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
-              <div style={{
-                width: '46px',
-                height: '46px',
-                borderRadius: '50%',
-                background: 'rgba(37, 99, 235, 0.12)',
-                border: '1px solid rgba(37, 99, 235, 0.25)',
-                color: '#3b82f6',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center'
-              }}>
-                <Send size={20} />
-              </div>
-              <div>
-                <h3 style={{ color: '#fff', fontSize: '1.3rem', fontWeight: '700', margin: '0 0 4px 0' }}>
-                  Send Me a Message
-                </h3>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', margin: 0 }}>
-                  Fill out the form and I'll get back to you as soon as possible.
-                </p>
-              </div>
-            </div>
+          <div className="card contact-form fade-in">
+            <h3>Send Me a Message</h3>
+            <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>
+              Fill out the form and I&apos;ll get back to you as soon as possible.
+            </p>
 
-            {/* Contact Form */}
-            <form 
-              onSubmit={handleSubmit} 
-              aria-label="Contact form" 
-              style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}
-            >
-              {submitted && (
-                <div 
-                  role="alert" 
-                  style={{ 
-                    background: 'rgba(16, 185, 129, 0.15)', 
-                    border: '1px solid rgba(16, 185, 129, 0.3)',
-                    color: '#34d399', 
-                    padding: '14px', 
-                    borderRadius: '12px', 
-                    fontWeight: '600',
-                    fontSize: '0.95rem'
-                  }}
-                >
-                  ✓ Thank you! Your message has been sent successfully.
-                </div>
-              )}
-
-              {/* Name & Email Row */}
-              <div 
-                className="form-row-2"
+            {isSubmitted && (
+              <div
                 style={{
-                  display: 'grid',
-                  gridTemplateColumns: '1fr 1fr',
-                  gap: '1.25rem'
+                  background: 'rgba(16, 185, 129, 0.15)',
+                  border: '1px solid #10b981',
+                  color: '#34d399',
+                  padding: '1rem',
+                  borderRadius: '10px',
+                  marginBottom: '1.5rem',
+                  textAlign: 'center',
                 }}
               >
-                {/* Name Input */}
-                <div style={{ position: 'relative' }}>
-                  <span style={{
-                    position: 'absolute',
-                    left: '14px',
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    color: 'var(--text-muted)',
-                    display: 'flex',
-                    alignItems: 'center'
-                  }}>
-                    <User size={16} />
-                  </span>
-                  <input 
-                    type="text" 
-                    name="name" 
-                    value={formData.name} 
-                    onChange={handleChange}
-                    aria-label="Your Name"
-                    style={{ 
-                      width: '100%', 
-                      padding: '14px 14px 14px 42px', 
-                      background: 'rgba(255, 255, 255, 0.02)',
-                      border: `1px solid ${errors.name ? 'var(--error)' : 'rgba(255, 255, 255, 0.08)'}`, 
-                      borderRadius: '12px',
-                      color: '#fff',
-                      fontSize: '0.95rem',
-                      outline: 'none',
-                      transition: 'var(--transition)'
-                    }} 
-                    onFocus={(e) => {
-                      if (!errors.name) e.target.style.borderColor = 'var(--primary)';
-                    }}
-                    onBlur={(e) => {
-                      if (!errors.name) e.target.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-                    }}
-                    placeholder="Your Name" 
-                    required
-                  />
-                  {errors.name && <span style={{ color: 'var(--error)', fontSize: '0.75rem', display: 'block', marginTop: '0.25rem' }}>{errors.name}</span>}
-                </div>
-
-                {/* Email Input */}
-                <div style={{ position: 'relative' }}>
-                  <span style={{
-                    position: 'absolute',
-                    left: '14px',
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    color: 'var(--text-muted)',
-                    display: 'flex',
-                    alignItems: 'center'
-                  }}>
-                    <Mail size={16} />
-                  </span>
-                  <input 
-                    type="email" 
-                    name="email" 
-                    value={formData.email} 
-                    onChange={handleChange}
-                    aria-label="Your Email"
-                    style={{ 
-                      width: '100%', 
-                      padding: '14px 14px 14px 42px', 
-                      background: 'rgba(255, 255, 255, 0.02)',
-                      border: `1px solid ${errors.email ? 'var(--error)' : 'rgba(255, 255, 255, 0.08)'}`, 
-                      borderRadius: '12px',
-                      color: '#fff',
-                      fontSize: '0.95rem',
-                      outline: 'none',
-                      transition: 'var(--transition)'
-                    }} 
-                    onFocus={(e) => {
-                      if (!errors.email) e.target.style.borderColor = 'var(--primary)';
-                    }}
-                    onBlur={(e) => {
-                      if (!errors.email) e.target.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-                    }}
-                    placeholder="Your Email" 
-                    required
-                  />
-                  {errors.email && <span style={{ color: 'var(--error)', fontSize: '0.75rem', display: 'block', marginTop: '0.25rem' }}>{errors.email}</span>}
-                </div>
+                <i className="fas fa-check-circle" style={{ marginRight: '0.5rem' }}></i>
+                Thank you! Your message has been sent successfully.
               </div>
+            )}
 
-              {/* Subject Input */}
-              <div style={{ position: 'relative' }}>
-                <span style={{
-                  position: 'absolute',
-                  left: '14px',
-                  top: '50%',
-                  transform: 'translateY(-50%)',
-                  color: 'var(--text-muted)',
-                  display: 'flex',
-                  alignItems: 'center'
-                }}>
-                  <Tag size={16} />
-                </span>
-                <input 
-                  type="text" 
-                  name="subject" 
-                  value={formData.subject} 
+            <form id="contactForm" onSubmit={handleSubmit} noValidate>
+              <div className="form-group">
+                <label htmlFor="name">Name *</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={formData.name}
                   onChange={handleChange}
-                  aria-label="Subject"
-                  style={{ 
-                    width: '100%', 
-                    padding: '14px 14px 14px 42px', 
-                    background: 'rgba(255, 255, 255, 0.02)',
-                    border: `1px solid ${errors.subject ? 'var(--error)' : 'rgba(255, 255, 255, 0.08)'}`, 
-                    borderRadius: '12px',
-                    color: '#fff',
-                    fontSize: '0.95rem',
-                    outline: 'none',
-                    transition: 'var(--transition)'
-                  }} 
-                  onFocus={(e) => {
-                    if (!errors.subject) e.target.style.borderColor = 'var(--primary)';
-                  }}
-                  onBlur={(e) => {
-                    if (!errors.subject) e.target.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-                  }}
-                  placeholder="Subject" 
+                  placeholder="Your full name"
                   required
                 />
-                {errors.subject && <span style={{ color: 'var(--error)', fontSize: '0.75rem', display: 'block', marginTop: '0.25rem' }}>{errors.subject}</span>}
+                {errors.name && <small className="form-error" style={{ color: '#ef4444' }}>{errors.name}</small>}
               </div>
 
-              {/* Message Textarea */}
-              <div style={{ position: 'relative' }}>
-                <span style={{
-                  position: 'absolute',
-                  left: '14px',
-                  top: '16px',
-                  color: 'var(--text-muted)',
-                  display: 'flex',
-                  alignItems: 'center'
-                }}>
-                  <MessageSquare size={16} />
-                </span>
-                <textarea 
-                  name="message" 
-                  rows="5" 
-                  value={formData.message} 
+              <div className="form-group">
+                <label htmlFor="email">Email *</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
                   onChange={handleChange}
-                  aria-label="Your Message"
-                  style={{ 
-                    width: '100%', 
-                    padding: '14px 14px 14px 42px', 
-                    background: 'rgba(255, 255, 255, 0.02)',
-                    border: `1px solid ${errors.message ? 'var(--error)' : 'rgba(255, 255, 255, 0.08)'}`, 
-                    borderRadius: '12px',
-                    color: '#fff',
-                    fontSize: '0.95rem',
-                    outline: 'none',
-                    fontFamily: 'inherit',
-                    resize: 'vertical',
-                    transition: 'var(--transition)'
-                  }} 
-                  onFocus={(e) => {
-                    if (!errors.message) e.target.style.borderColor = 'var(--primary)';
-                  }}
-                  onBlur={(e) => {
-                    if (!errors.message) e.target.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-                  }}
-                  placeholder="Your Message"
+                  placeholder="your.email@example.com"
+                  required
+                />
+                {errors.email && <small className="form-error" style={{ color: '#ef4444' }}>{errors.email}</small>}
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="message">Message *</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={5}
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Your message here..."
                   required
                 ></textarea>
-                {errors.message && <span style={{ color: 'var(--error)', fontSize: '0.75rem', display: 'block', marginTop: '0.25rem' }}>{errors.message}</span>}
+                {errors.message && (
+                  <small className="form-error" style={{ color: '#ef4444' }}>
+                    {errors.message}
+                  </small>
+                )}
               </div>
 
-              {/* Submit Button */}
-              <button 
-                type="submit" 
-                className="btn btn-primary"
-                disabled={isSending}
-                style={{ 
-                  marginTop: '0.5rem',
-                  width: '100%',
-                  padding: '14px',
-                  borderRadius: '12px',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  gap: '0.5rem',
-                  fontSize: '0.95rem',
-                  fontWeight: '700',
-                  background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
-                  boxShadow: '0 4px 15px rgba(37, 99, 235, 0.2)',
-                  opacity: isSending ? 0.7 : 1,
-                  cursor: isSending ? 'not-allowed' : 'pointer'
-                }}
-              >
-                <Send size={16} /> {isSending ? 'Sending Message...' : 'Send Message'}
+              <button type="submit" className="btn btn-primary" style={{ width: '100%' }} disabled={isSubmitting}>
+                {isSubmitting ? (
+                  <>
+                    <i className="fas fa-spinner fa-spin"></i> Sending...
+                  </>
+                ) : (
+                  <>
+                    Send Message <i className="fas fa-paper-plane"></i>
+                  </>
+                )}
               </button>
 
-              {/* Bottom security text */}
-              <div style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '0.4rem',
-                color: 'var(--text-muted)',
-                fontSize: '0.8rem',
-                marginTop: '0.5rem'
-              }}>
-                <Lock size={12} /> Your information is safe with me.
-              </div>
+              <p style={{ fontSize: '0.75rem', textAlign: 'center', color: 'var(--text-secondary)', marginTop: '1rem', opacity: 0.8 }}>
+                Your information is safe with me.
+              </p>
             </form>
           </div>
         </div>
-
-        {/* Bottom Card: Let's Connect & Available For (no image layout) */}
-        <div 
-          className="glass-card"
-          style={{ 
-            padding: '2.5rem 3rem',
-            background: 'rgba(10, 15, 30, 0.45)',
-            border: '1px solid rgba(255, 255, 255, 0.06)',
-            borderRadius: '24px',
-            boxShadow: 'var(--glass-shadow)',
-            backdropFilter: 'var(--glass-blur)'
-          }}
-        >
-          <div 
-            className="bottom-connect-grid"
-            style={{ 
-              display: 'grid', 
-              gridTemplateColumns: '1fr 1.2fr', 
-              gap: '4rem',
-              alignItems: 'center'
-            }}
-          >
-            {/* Left Side: Let's Connect Info */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', alignItems: 'flex-start' }}>
-              <div 
-                style={{ 
-                  width: 44, 
-                  height: 44, 
-                  background: 'rgba(59, 130, 246, 0.1)', 
-                  border: '1px solid rgba(59, 130, 246, 0.25)',
-                  borderRadius: '12px', 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center', 
-                  color: '#3b82f6'
-                }}
-              >
-                <Calendar size={22} />
-              </div>
-              <h3 style={{ color: '#fff', fontSize: '1.5rem', fontWeight: '800', margin: '0.25rem 0 0 0' }}>
-                Let's Connect!
-              </h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: '1.6', margin: 0 }}>
-                I'm always open to discussing projects, web development collaborations, or just having a chat about technology and innovation.
-              </p>
-            </div>
-
-            {/* Right Side: Available For List */}
-            <div 
-              style={{ 
-                display: 'flex', 
-                flexDirection: 'column', 
-                gap: '1.25rem',
-                borderLeft: '1px solid rgba(255, 255, 255, 0.08)',
-                paddingLeft: '3rem'
-              }}
-              className="available-list-wrapper"
-            >
-              <h4 style={{ color: '#fff', fontSize: '1.2rem', fontWeight: '700', margin: 0 }}>
-                 Open For
-              </h4>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-                {[
-                  'Collaborations',
-                  'Internship Opportunities',
-                  'Learning Together',
-                  'Project Ideas'
-                ].map((item, idx) => (
-                  <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--text-secondary)' }}>
-                    <div style={{
-                      width: '18px',
-                      height: '18px',
-                      borderRadius: '50%',
-                      background: 'rgba(59, 130, 246, 0.1)',
-                      border: '1px solid rgba(59, 130, 246, 0.25)',
-                      color: '#3b82f6',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0
-                    }}>
-                      <Check size={11} strokeWidth={3} />
-                    </div>
-                    <span style={{ fontSize: '0.95rem', color: 'var(--text-secondary)', fontWeight: '500' }}>
-                      {item}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
       </div>
-
-      <style>{`
-        @media (max-width: 992px) {
-          .contact-main-grid {
-            grid-template-columns: 1fr !important;
-            gap: 3rem !important;
-          }
-          .bottom-connect-grid {
-            grid-template-columns: 1fr !important;
-            gap: 2.5rem !important;
-          }
-          .available-list-wrapper {
-            border-left: none !important;
-            padding-left: 0 !important;
-            border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
-            padding-top: 2rem !important;
-          }
-        }
-        @media (max-width: 550px) {
-          .form-row-2 {
-            grid-template-columns: 1fr !important;
-            gap: 1.25rem !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }
-
-export default Contact;

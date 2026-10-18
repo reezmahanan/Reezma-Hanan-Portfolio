@@ -1,258 +1,179 @@
-import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 
-function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const location = useLocation();
-  const menuRef = useRef(null);
-  const toggleRef = useRef(null);
+export default function Navbar() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem('theme') || 'dark';
+  });
 
-  const navLinks = [
-    { path: '/', label: 'Home' },
-    { path: '/about', label: 'About' },
-    { path: '/education', label: 'Education' },
-    { path: '/skills', label: 'Skills' },
-    { path: '/certificates', label: 'Certificates' },
-    { path: '/projects', label: 'Projects' },
-    { path: '/contact', label: 'Contact' },
-  ];
+  const dropdownRef = useRef(null);
+  const mobileMenuRef = useRef(null);
 
-  // Close menu on ESC key press
+  // Sync theme attribute on <html>
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+  };
+
+  // Close menus on click outside
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setIsDropdownOpen(false);
+      }
+      if (
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(e.target) &&
+        !e.target.closest('#mobileMenuToggle')
+      ) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, []);
+
+  // Close menus on Escape key
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
-        setIsOpen(false);
-        toggleRef.current?.focus();
+        setIsDropdownOpen(false);
+        setIsMobileMenuOpen(false);
       }
     };
-    if (isOpen) {
-      document.addEventListener('keydown', handleKeyDown);
-    }
+    document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen]);
+  }, []);
 
-  // Close menu when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (
-        isOpen &&
-        menuRef.current &&
-        !menuRef.current.contains(e.target) &&
-        !toggleRef.current.contains(e.target)
-      ) {
-        setIsOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, [isOpen]);
-
-
+  const handleLinkClick = () => {
+    setIsMobileMenuOpen(false);
+    setIsDropdownOpen(false);
+  };
 
   return (
-    <nav
-      style={{
-        background: 'rgba(13, 17, 28, 0.7)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)',
-        borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-        position: 'sticky',
-        top: 0,
-        zIndex: 1000,
-        height: '70px',
-        display: 'flex',
-        alignItems: 'center',
-      }}
-      aria-label="Main navigation"
-    >
-      <div className="container" style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <Link
-          to="/"
-          style={{
-            fontSize: '1.6rem',
-            fontWeight: '900',
-            textDecoration: 'none',
-            letterSpacing: '-1px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.25rem',
-          }}
-          aria-label="Reezma Hanan - Home"
-        >
-          <span style={{ color: '#fff' }}>Reezma</span>
-          <span className="gradient-text-accent" style={{ fontWeight: '900' }}>Hanan</span>
-        </Link>
+    <nav className="navbar" role="navigation" aria-label="Main Navigation">
+      <div className="container nav-container">
+        <a href="#home" className="logo" onClick={handleLinkClick}>
+          Reezma Hanan
+        </a>
 
-        {/* Desktop Links */}
         <ul
-          style={{
-            display: 'flex',
-            gap: '1.5rem',
-            listStyle: 'none',
-            margin: 0,
-            padding: 0,
-          }}
-          className="desktop-menu"
+          className={`nav-menu ${isMobileMenuOpen ? 'mobile-active' : ''}`}
+          id="navMenu"
+          ref={mobileMenuRef}
         >
-          {navLinks.map((link) => {
-            const isActive = location.pathname === link.path;
-            return (
-              <li key={link.path}>
-                <Link
-                  to={link.path}
-                  aria-current={isActive ? 'page' : undefined}
-                  style={{
-                    textDecoration: 'none',
-                    color: isActive ? '#fff' : 'var(--text-secondary)',
-                    fontWeight: 600,
-                    fontSize: '0.95rem',
-                    padding: '8px 12px',
-                    borderRadius: '8px',
-                    background: isActive ? 'rgba(255, 255, 255, 0.05)' : 'transparent',
-                    border: isActive ? '1px solid rgba(255, 255, 255, 0.08)' : '1px solid transparent',
-                    transition: 'var(--transition)',
-                    position: 'relative',
-                  }}
-                  onMouseEnter={(e) => {
-                    if (!isActive) {
-                      e.currentTarget.style.color = '#fff';
-                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.02)';
-                      e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.04)';
-                    }
-                  }}
-                  onMouseLeave={(e) => {
-                    if (!isActive) {
-                      e.currentTarget.style.color = 'var(--text-secondary)';
-                      e.currentTarget.style.background = 'transparent';
-                      e.currentTarget.style.borderColor = 'transparent';
-                    }
-                  }}
-                >
-                  {link.label}
-                  {isActive && (
-                    <span
-                      style={{
-                        position: 'absolute',
-                        bottom: '-6px',
-                        left: '20%',
-                        width: '60%',
-                        height: '2px',
-                        background: 'linear-gradient(90deg, var(--primary), var(--secondary))',
-                        boxShadow: '0 0 8px var(--primary-glow)',
-                        borderRadius: '2px',
-                      }}
-                    />
-                  )}
-                </Link>
+          <li>
+            <a href="#about" className="nav-link" onClick={handleLinkClick}>
+              About
+            </a>
+          </li>
+          <li>
+            <a href="#skills" className="nav-link" onClick={handleLinkClick}>
+              Skills
+            </a>
+          </li>
+          <li>
+            <a href="#education" className="nav-link" onClick={handleLinkClick}>
+              Education
+            </a>
+          </li>
+          <li>
+            <a href="#certs" className="nav-link" onClick={handleLinkClick}>
+              Certificates
+            </a>
+          </li>
+          <li>
+            <a href="#projects" className="nav-link" onClick={handleLinkClick}>
+              Projects
+            </a>
+          </li>
+
+          {/* More Dropdown */}
+          <li className={`nav-dropdown ${isDropdownOpen ? 'open' : ''}`} ref={dropdownRef}>
+            <button
+              type="button"
+              className="nav-link dropdown-toggle"
+              id="moreDropdownBtn"
+              onClick={() => setIsDropdownOpen(prev => !prev)}
+              aria-expanded={isDropdownOpen}
+              aria-haspopup="true"
+            >
+              <span>More</span>
+              <i className={`fas fa-chevron-down dropdown-arrow ${isDropdownOpen ? 'rotated' : ''}`}></i>
+            </button>
+
+            <ul className={`dropdown-menu ${isDropdownOpen ? 'show' : ''}`} id="moreDropdownMenu">
+              <li>
+                <a href="#leadership" className="dropdown-link" onClick={handleLinkClick}>
+                  <i className="fas fa-crown dropdown-icon"></i>
+                  <span>Leadership</span>
+                </a>
               </li>
-            );
-          })}
+              <li>
+                <a href="#opensource" className="dropdown-link" onClick={handleLinkClick}>
+                  <i className="fas fa-code-branch dropdown-icon"></i>
+                  <span>Open Source</span>
+                </a>
+              </li>
+              <li>
+                <a href="#blogs" className="dropdown-link" onClick={handleLinkClick}>
+                  <i className="fas fa-book-open dropdown-icon"></i>
+                  <span>Blogs</span>
+                </a>
+              </li>
+              <li>
+                <a href="#creative" className="dropdown-link" onClick={handleLinkClick}>
+                  <i className="fas fa-palette dropdown-icon"></i>
+                  <span>Creative Designs</span>
+                </a>
+              </li>
+              <li>
+                <a href="#community" className="dropdown-link" onClick={handleLinkClick}>
+                  <i className="fas fa-hands-helping dropdown-icon"></i>
+                  <span>Volunteering</span>
+                </a>
+              </li>
+              <li>
+                <a href="#contact" className="dropdown-link" onClick={handleLinkClick}>
+                  <i className="fas fa-envelope dropdown-icon"></i>
+                  <span>Contact</span>
+                </a>
+              </li>
+            </ul>
+          </li>
         </ul>
 
-        {/* Mobile Hamburger Toggle */}
-        <button
-          ref={toggleRef}
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
-          aria-expanded={isOpen}
-          className="mobile-toggle"
-          style={{
-            background: 'rgba(255, 255, 255, 0.05)',
-            border: '1px solid rgba(255, 255, 255, 0.08)',
-            color: 'white',
-            width: '40px',
-            height: '40px',
-            borderRadius: '10px',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '1.25rem',
-            transition: 'var(--transition)',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'rgba(255, 255, 255, 0.1)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'rgba(255, 255, 255, 0.05)';
-          }}
-        >
-          {isOpen ? '✕' : '☰'}
-        </button>
+        <div className="nav-actions">
+          <button
+            className="theme-toggle"
+            id="themeToggle"
+            onClick={toggleTheme}
+            title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            aria-label="Toggle visual theme"
+          >
+            <i className={theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon'}></i>
+          </button>
+
+          <a href="Reezma_Hanan_Resume.pdf" className="btn btn-cv-nav" target="_blank" rel="noreferrer">
+            <i className="fas fa-file-pdf"></i> View CV
+          </a>
+
+          <button
+            className="mobile-menu-toggle"
+            id="mobileMenuToggle"
+            onClick={() => setIsMobileMenuOpen(prev => !prev)}
+            aria-label="Toggle navigation menu"
+            aria-expanded={isMobileMenuOpen}
+          >
+            <i className={isMobileMenuOpen ? 'fas fa-times' : 'fas fa-bars'}></i>
+          </button>
+        </div>
       </div>
-
-      {/* Mobile Drawer Overlay */}
-      <div
-        className={`mobile-nav-overlay ${isOpen ? 'open' : ''}`}
-        aria-hidden="true"
-        onClick={() => setIsOpen(false)}
-      />
-
-      {/* Mobile Menu Drawer */}
-      <div
-        ref={menuRef}
-        className={`mobile-nav-drawer ${isOpen ? 'open' : ''}`}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Mobile Navigation"
-      >
-        <Link
-          to="/"
-          style={{
-            fontSize: '1.4rem',
-            fontWeight: '900',
-            textDecoration: 'none',
-            marginBottom: '2rem',
-            display: 'block',
-          }}
-          onClick={() => setIsOpen(false)}
-        >
-          <span style={{ color: '#fff' }}>Reezma</span>
-          <span className="gradient-text-accent" style={{ fontWeight: '900' }}>Hanan</span>
-        </Link>
-        {navLinks.map((link) => {
-          const isActive = location.pathname === link.path;
-          return (
-            <Link
-              key={link.path}
-              to={link.path}
-              onClick={() => setIsOpen(false)}
-              aria-current={isActive ? 'page' : undefined}
-              style={{
-                textDecoration: 'none',
-                color: isActive ? '#fff' : 'var(--text-secondary)',
-                fontWeight: 600,
-                fontSize: '1.1rem',
-                padding: '12px 16px',
-                borderRadius: '12px',
-                background: isActive ? 'rgba(255, 255, 255, 0.08)' : 'transparent',
-                border: isActive ? '1px solid rgba(255, 255, 255, 0.12)' : '1px solid transparent',
-                transition: 'var(--transition)',
-              }}
-            >
-              {link.label}
-            </Link>
-          );
-        })}
-      </div>
-
-      {/* CSS Styles injection for desktop/mobile toggles */}
-      <style>{`
-        .mobile-toggle {
-          display: none !important;
-        }
-        @media (max-width: 768px) {
-          .desktop-menu {
-            display: none !important;
-          }
-          .mobile-toggle {
-            display: flex !important;
-          }
-        }
-      `}</style>
     </nav>
   );
 }
-
-export default Navbar;

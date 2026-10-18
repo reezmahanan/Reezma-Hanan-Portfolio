@@ -1,355 +1,294 @@
-import { Code, Cloud, Wrench, Layers, Laptop, Star, BookOpen, Cpu, Shield, Brain, Users, MessageSquare, Clock } from 'lucide-react';
-
-function Skills() {
-  const skillCategories = [
-    {
-      category: 'Languages',
-      icon: <Code size={20} style={{ color: '#6366f1' }} />,
-      skills: [
-        { name: 'Python', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg' },
-        { name: 'Java', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg' },
-        { name: 'JavaScript', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
-        { name: 'PHP', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg' },
-        { name: 'MATLAB', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matlab/matlab-original.svg' },
-      ]
-    },
-    {
-      category: 'Web Development',
-      icon: <Laptop size={20} style={{ color: '#10b981' }} />,
-      skills: [
-        { name: 'HTML5', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
-        { name: 'CSS3', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
-        { name: 'React.js', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
-      ]
-    },
-    {
-      category: 'Backend & Databases',
-      icon: <Layers size={20} style={{ color: '#f59e0b' }} />,
-      skills: [
-        { name: 'Spring Boot', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg' },
-        { name: 'MySQL', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' },
-        { name: 'Node.js', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg' },
-        { name: 'REST APIs', lucideIcon: <Code size={18} /> },
-      ]
-    },
-    {
-      category: 'Cloud & Infrastructure',
-      icon: <Cloud size={20} style={{ color: '#00b4d8' }} />,
-      skills: [
-        { name: 'AWS', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg' },
-        { name: 'Cloud Fundamentals', lucideIcon: <Cloud size={18} /> }
-      ]
-    },
-    {
-      category: 'Developer Tools',
-      icon: <Wrench size={20} style={{ color: '#0ea5e9' }} />,
-      skills: [
-        { name: 'Git', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
-        { name: 'GitHub', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg', isDark: true },
-        { name: 'VS Code', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg' },
-        { name: 'IntelliJ IDEA', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg' },
-        { name: 'Postman', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg' },
-        { name: 'NPM', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg' },
-      ]
-    },
-    {
-      category: 'Design & Other Competencies',
-      icon: <Star size={20} style={{ color: '#ec4899' }} />,
-      skills: [
-        { name: 'Figma', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg' },
-        { name: 'Canva', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/canva/canva-original.svg' },
-        { name: 'Adobe Photoshop', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/photoshop/photoshop-original.svg' },
-        { name: 'Adobe Illustrator', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/illustrator/illustrator-plain.svg' },
-        { name: 'Linux', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg' },
-        { name: 'Cyber Security', lucideIcon: <Shield size={18} /> },
-        { name: 'Embedded Systems', lucideIcon: <Cpu size={18} /> },
-      ]
-    },
-    {
-      category: 'Soft Skills',
-      icon: <Brain size={20} style={{ color: '#a855f7' }} />,
-      skills: [
-        { name: 'Problem Solving', lucideIcon: <Brain size={18} /> },
-        { name: 'Team Collaboration', lucideIcon: <Users size={18} /> },
-        { name: 'Communication', lucideIcon: <MessageSquare size={18} /> },
-        { name: 'Time Management', lucideIcon: <Clock size={18} /> }
-      ]
-    }
-  ];
-
-  const learningPlatforms = [
-    { name: 'HackerRank', lucideIcon: <Code size={16} />, profileLink: 'https://www.hackerrank.com/profile/reezmahanan' },
-    { name: 'Cisco Networking Academy', lucideIcon: <Shield size={16} /> },
-    { name: 'Microsoft Learn', lucideIcon: <BookOpen size={16} /> },
-    { name: 'CODL LMS UOM', lucideIcon: <BookOpen size={16} /> },
-    { name: 'W3Schools', lucideIcon: <BookOpen size={16} /> },
-    { name: 'SoloLearn', lucideIcon: <BookOpen size={16} /> },
-    { name: 'GeeksforGeeks', lucideIcon: <Code size={16} /> },
-    { name: 'AWS Educate', iconUrl: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg' },
-    { name: 'Simplilearn', lucideIcon: <BookOpen size={16} /> },
-  ];
-
+export default function Skills() {
   return (
-    <section className="animate-fade-in" style={{ padding: '80px 0' }}>
-      <div className="container" style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}>
-        
-        <div style={{ textAlign: 'center' }}>
-          <h2 className="gradient-text-primary" style={{ marginBottom: '0.5rem' }}>
-            Programming & Development Skills
+    <section className="skills section" id="skills">
+      <div className="container">
+        <div className="section-hero-header text-center fade-in">
+          <div className="section-pill-wrap">
+            <span className="section-pill-badge">
+              <i className="fas fa-tools"></i>
+              <span>Skills</span>
+            </span>
+          </div>
+
+          <h2 className="section-hero-title">
+            Skills I<br />
+            <span className="section-hero-accent">BUILD WITH.</span>
           </h2>
-          <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem' }}>
-            Expertise across languages, frameworks, cloud, dev tools, and learning paths.
+
+          <p className="section-hero-subtitle">
+            A growing toolkit of technologies I use to build solutions, solve problems, and keep learning.
           </p>
         </div>
 
-        {/* 3-Column Skills Grid */}
-        <div 
-          className="skills-grid"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '2rem'
-          }}
-        >
-          {skillCategories.map((cat, index) => (
-            <div 
-              key={index} 
-              className="glass-card" 
-              style={{
-                padding: '2rem',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '1.5rem',
-                border: '1px solid rgba(255, 255, 255, 0.06)',
-                background: 'rgba(10, 15, 30, 0.45)',
-                backdropFilter: 'blur(20px) saturate(140%)',
-                borderRadius: '24px',
-                transition: 'var(--transition)',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(99, 102, 241, 0.25)';
-                e.currentTarget.style.transform = 'translateY(-5px)';
-                e.currentTarget.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.4), 0 0 25px rgba(99, 102, 241, 0.05)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.06)';
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
-            >
-              <h3 
-                style={{
-                  fontSize: '1.25rem',
-                  color: '#fff',
-                  fontWeight: '700',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.75rem',
-                  borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-                  paddingBottom: '0.75rem',
-                }}
-              >
-                {cat.icon}
-                {cat.category}
-              </h3>
-              
-              <div 
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: '1fr',
-                  gap: '0.75rem',
-                }}
-              >
-                {cat.skills.map((skill, sIdx) => (
-                  <div 
-                    key={sIdx}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.8rem',
-                      background: 'rgba(255, 255, 255, 0.02)',
-                      border: '1px solid rgba(255, 255, 255, 0.05)',
-                      padding: '10px 14px',
-                      borderRadius: '12px',
-                      color: '#f1f5f9',
-                      fontWeight: '600',
-                      fontSize: '0.95rem',
-                      transition: 'all 0.25s cubic-bezier(0.23, 1, 0.32, 1)',
-                      cursor: 'default',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.06)';
-                      e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.15)';
-                      e.currentTarget.style.transform = 'translateX(4px)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.02)';
-                      e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.05)';
-                      e.currentTarget.style.transform = 'translateX(0)';
-                    }}
-                  >
-                    {skill.iconUrl ? (
-                      <img 
-                        src={skill.iconUrl} 
-                        alt={`${skill.name} logo`} 
-                        style={{ 
-                          width: '22px', 
-                          height: '22px', 
-                          objectFit: 'contain',
-                          filter: skill.isDark ? 'invert(1) brightness(1.5)' : 'none'
-                        }} 
-                        onError={(e) => {
-                          // Fallback if image does not load
-                          e.currentTarget.style.display = 'none';
-                        }}
-                      />
-                    ) : (
-                      <span style={{ color: 'var(--primary)', display: 'flex', alignItems: 'center' }}>
-                        {skill.lucideIcon}
-                      </span>
-                    )}
-                    <span>{skill.name}</span>
-                  </div>
-                ))}
+        <div className="skills-layout fade-in">
+          {/* Skills Panel Grid with Real SkillIcons */}
+          <div className="skills-categories-grid">
+            {/* Languages */}
+            <div className="skills-category-card card">
+              <h4>Programming Languages</h4>
+              <div className="skills-icons-row">
+                <div className="skill-icon-item" title="Java">
+                  <img src="https://skillicons.dev/icons?i=java" alt="Java" />
+                  <span>Java</span>
+                </div>
+                <div className="skill-icon-item" title="Python">
+                  <img src="https://skillicons.dev/icons?i=py" alt="Python" />
+                  <span>Python</span>
+                </div>
+                <div className="skill-icon-item" title="JavaScript">
+                  <img src="https://skillicons.dev/icons?i=js" alt="JavaScript" />
+                  <span>JavaScript</span>
+                </div>
+                <div className="skill-icon-item" title="TypeScript">
+                  <img src="https://skillicons.dev/icons?i=ts" alt="TypeScript" />
+                  <span>TypeScript</span>
+                </div>
+                <div className="skill-icon-item" title="PHP">
+                  <img src="https://skillicons.dev/icons?i=php" alt="PHP" />
+                  <span>PHP</span>
+                </div>
+                <div className="skill-icon-item" title="C">
+                  <img src="https://skillicons.dev/icons?i=c" alt="C" />
+                  <span>C</span>
+                </div>
               </div>
             </div>
-          ))}
-        </div>
 
-        {/* Continuous Learning Section */}
-        <div 
-          style={{ 
-            display: 'flex', 
-            flexDirection: 'column', 
-            gap: '1.5rem',
-            marginTop: '2rem',
-            paddingTop: '3rem',
-            borderTop: '1px solid rgba(255, 255, 255, 0.08)'
-          }}
-        >
-          <h3 
-            style={{ 
-              textAlign: 'center', 
-              color: '#fff', 
-              fontSize: '1.6rem', 
-              fontWeight: 700, 
-              display: 'inline-flex', 
-              alignItems: 'center', 
-              justifyContent: 'center', 
-              gap: '0.5rem' 
-            }}
-          >
-             Learning Platforms & Academic Environments
-          </h3>
-          
-          <div 
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              justifyContent: 'center',
-              gap: '1rem',
-            }}
-          >
-            {learningPlatforms.map((platform, idx) => {
-              const content = (
-                <>
-                  {platform.iconUrl ? (
-                    <img src={platform.iconUrl} alt={platform.name} style={{ width: '18px', height: '18px', objectFit: 'contain' }} />
-                  ) : (
-                    <span style={{ color: 'var(--primary)', display: 'flex', alignItems: 'center' }}>
-                      {platform.lucideIcon}
-                    </span>
-                  )}
-                  {platform.name}
-                </>
-              );
-
-              const cardStyles = {
-                padding: '10px 18px',
-                borderRadius: '14px',
-                border: '1px solid rgba(255, 255, 255, 0.05)',
-                background: 'rgba(255, 255, 255, 0.02)',
-                color: 'var(--text-secondary)',
-                fontSize: '0.85rem',
-                fontWeight: '700',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.6rem',
-                transition: 'var(--transition)',
-                cursor: platform.profileLink ? 'pointer' : 'default',
-                textDecoration: 'none'
-              };
-
-              if (platform.profileLink) {
-                return (
-                  <a
-                    key={idx}
-                    href={platform.profileLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="glass-card"
-                    style={cardStyles}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.borderColor = 'rgba(99, 102, 241, 0.25)';
-                      e.currentTarget.style.background = 'rgba(99, 102, 241, 0.05)';
-                      e.currentTarget.style.color = '#fff';
-                      e.currentTarget.style.transform = 'translateY(-2px)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.05)';
-                      e.currentTarget.style.background = 'rgba(255, 255, 255, 0.02)';
-                      e.currentTarget.style.color = 'var(--text-secondary)';
-                      e.currentTarget.style.transform = 'translateY(0)';
-                    }}
-                  >
-                    {content}
-                  </a>
-                );
-              }
-
-              return (
-                <div
-                  key={idx}
-                  className="glass-card"
-                  style={cardStyles}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = 'rgba(99, 102, 241, 0.25)';
-                    e.currentTarget.style.background = 'rgba(99, 102, 241, 0.05)';
-                    e.currentTarget.style.color = '#fff';
-                    e.currentTarget.style.transform = 'translateY(-2px)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.05)';
-                    e.currentTarget.style.background = 'rgba(255, 255, 255, 0.02)';
-                    e.currentTarget.style.color = 'var(--text-secondary)';
-                    e.currentTarget.style.transform = 'translateY(0)';
-                  }}
-                >
-                  {content}
+            {/* Machine Learning & Data Science */}
+            <div className="skills-category-card card">
+              <h4>Machine Learning &amp; Data Science</h4>
+              <div className="skills-icons-row">
+                <div className="skill-icon-item" title="Python">
+                  <img src="https://skillicons.dev/icons?i=py" alt="Python" />
+                  <span>Python</span>
                 </div>
-              );
-            })}
+                <div className="skill-icon-item" title="Scikit-Learn">
+                  <img src="https://skillicons.dev/icons?i=sklearn" alt="Scikit-Learn" />
+                  <span>Scikit-Learn</span>
+                </div>
+                <div className="skill-icon-item" title="Pandas">
+                  <img src="/screenshots/pandas.svg" alt="Pandas" />
+                  <span>Pandas</span>
+                </div>
+                <div className="skill-icon-item" title="NumPy">
+                  <img src="/screenshots/numpy.svg" alt="NumPy" />
+                  <span>NumPy</span>
+                </div>
+                <div className="skill-icon-item" title="LightGBM">
+                  <img src="/screenshots/lightgbm.svg" alt="LightGBM" />
+                  <span>LightGBM</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Frameworks & Runtimes */}
+            <div className="skills-category-card card">
+              <h4>Frameworks &amp; Runtimes</h4>
+              <div className="skills-icons-row">
+                <div className="skill-icon-item" title="Spring Boot">
+                  <img src="https://skillicons.dev/icons?i=spring" alt="Spring Boot" />
+                  <span>Spring Boot</span>
+                </div>
+                <div className="skill-icon-item" title="React">
+                  <img src="https://skillicons.dev/icons?i=react" alt="React" />
+                  <span>React</span>
+                </div>
+                <div className="skill-icon-item" title="Node.js">
+                  <img src="https://skillicons.dev/icons?i=nodejs" alt="Node.js" />
+                  <span>Node.js</span>
+                </div>
+                <div className="skill-icon-item" title="Express.js">
+                  <img src="https://skillicons.dev/icons?i=express" alt="Express.js" />
+                  <span>Express</span>
+                </div>
+                <div className="skill-icon-item" title="Laravel">
+                  <img src="https://skillicons.dev/icons?i=laravel" alt="Laravel" />
+                  <span>Laravel</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Databases & Persistence */}
+            <div className="skills-category-card card">
+              <h4>Databases &amp; Persistence</h4>
+              <div className="skills-icons-row">
+                <div className="skill-icon-item" title="MySQL">
+                  <img src="https://skillicons.dev/icons?i=mysql" alt="MySQL" />
+                  <span>MySQL</span>
+                </div>
+                <div className="skill-icon-item" title="MongoDB">
+                  <img src="https://skillicons.dev/icons?i=mongodb" alt="MongoDB" />
+                  <span>MongoDB</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Frontend & Styling */}
+            <div className="skills-category-card card">
+              <h4>Frontend &amp; Styling</h4>
+              <div className="skills-icons-row">
+                <div className="skill-icon-item" title="HTML5">
+                  <img src="https://skillicons.dev/icons?i=html" alt="HTML5" />
+                  <span>HTML5</span>
+                </div>
+                <div className="skill-icon-item" title="CSS3">
+                  <img src="https://skillicons.dev/icons?i=css" alt="CSS3" />
+                  <span>CSS3</span>
+                </div>
+                <div className="skill-icon-item" title="Tailwind CSS">
+                  <img src="https://skillicons.dev/icons?i=tailwind" alt="Tailwind CSS" />
+                  <span>Tailwind</span>
+                </div>
+                <div className="skill-icon-item" title="Bootstrap">
+                  <img src="https://skillicons.dev/icons?i=bootstrap" alt="Bootstrap" />
+                  <span>Bootstrap</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Cloud, DevOps & Systems */}
+            <div className="skills-category-card card">
+              <h4>Cloud, DevOps &amp; Systems</h4>
+              <div className="skills-icons-row">
+                <div className="skill-icon-item" title="AWS">
+                  <img src="https://skillicons.dev/icons?i=aws" alt="AWS" />
+                  <span>AWS</span>
+                </div>
+                <div className="skill-icon-item" title="Docker">
+                  <img src="https://skillicons.dev/icons?i=docker" alt="Docker" />
+                  <span>Docker</span>
+                </div>
+                <div className="skill-icon-item" title="Linux">
+                  <img src="https://skillicons.dev/icons?i=linux" alt="Linux" />
+                  <span>Linux</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Developer Tools */}
+            <div className="skills-category-card card">
+              <h4>Developer Tools &amp; Testing</h4>
+              <div className="skills-icons-row">
+                <div className="skill-icon-item" title="Git">
+                  <img src="https://skillicons.dev/icons?i=git" alt="Git" />
+                  <span>Git</span>
+                </div>
+                <div className="skill-icon-item" title="GitHub">
+                  <img src="https://skillicons.dev/icons?i=github" alt="GitHub" />
+                  <span>GitHub</span>
+                </div>
+                <div className="skill-icon-item" title="VS Code">
+                  <img src="https://skillicons.dev/icons?i=vscode" alt="VS Code" />
+                  <span>VS Code</span>
+                </div>
+                <div className="skill-icon-item" title="IntelliJ IDEA">
+                  <img src="https://skillicons.dev/icons?i=idea" alt="IntelliJ IDEA" />
+                  <span>IntelliJ</span>
+                </div>
+                <div className="skill-icon-item" title="Postman">
+                  <img src="https://skillicons.dev/icons?i=postman" alt="Postman" />
+                  <span>Postman</span>
+                </div>
+                <div className="skill-icon-item" title="NPM">
+                  <img src="https://skillicons.dev/icons?i=npm" alt="NPM" />
+                  <span>NPM</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Design */}
+            <div className="skills-category-card card">
+              <h4>UI/UX &amp; Design Tools</h4>
+              <div className="skills-icons-row">
+                <div className="skill-icon-item" title="Figma">
+                  <img src="https://skillicons.dev/icons?i=figma" alt="Figma" />
+                  <span>Figma</span>
+                </div>
+                <div className="skill-icon-item" title="Photoshop">
+                  <img src="https://skillicons.dev/icons?i=ps" alt="Photoshop" />
+                  <span>Photoshop</span>
+                </div>
+                <div className="skill-icon-item" title="Adobe Illustrator">
+                  <img src="https://skillicons.dev/icons?i=ai" alt="Adobe Illustrator" />
+                  <span>Illustrator</span>
+                </div>
+                <div className="skill-icon-item" title="Canva">
+                  <img src="https://img.icons8.com/color/96/canva.png" alt="Canva" />
+                  <span>Canva</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Soft Skills & Leadership */}
+          <div className="skills-soft-card card fade-in">
+            <h4>Soft Skills &amp; Leadership</h4>
+            <div className="skills-pills">
+              <span className="skill-pill-highlight">
+                <i className="fas fa-crown"></i> Team Leadership
+              </span>
+              <span>
+                <i className="fas fa-lightbulb"></i> Problem Solving
+              </span>
+              <span>
+                <i className="fas fa-users"></i> Team Collaboration
+              </span>
+              <span>
+                <i className="fas fa-tasks"></i> Project Coordination
+              </span>
+              <span>
+                <i className="fas fa-comments"></i> Communication
+              </span>
+              <span>
+                <i className="fas fa-clock"></i> Time Management
+              </span>
+              <span>
+                <i className="fas fa-brain"></i> Critical Thinking
+              </span>
+            </div>
+          </div>
+
+          {/* Learning Platforms & Environments */}
+          <div className="learning-platforms fade-in">
+            <h3>Learning Platforms &amp; Academic Environments</h3>
+            <div className="platforms-grid">
+              <a href="https://www.hackerrank.com/profile/reezmahanan" target="_blank" rel="noreferrer" className="platform-badge card">
+                <i className="fab fa-hackerrank"></i> HackerRank
+              </a>
+              <a href="https://www.credly.com/users/reezma-hanan" target="_blank" rel="noreferrer" className="platform-badge card">
+                <i className="fas fa-network-wired"></i> Cisco NetAcad
+              </a>
+              <a href="https://learn.microsoft.com" target="_blank" rel="noreferrer" className="platform-badge card">
+                <i className="fab fa-microsoft"></i> Microsoft Learn
+              </a>
+              <a href="https://open.uom.lk" target="_blank" rel="noreferrer" className="platform-badge card">
+                <i className="fas fa-university"></i> CODL Uni of Moratuwa
+              </a>
+              <a href="https://www.w3schools.com" target="_blank" rel="noreferrer" className="platform-badge card">
+                <i className="fas fa-code"></i> W3Schools
+              </a>
+              <a href="https://www.sololearn.com" target="_blank" rel="noreferrer" className="platform-badge card">
+                <i className="fas fa-laptop-code"></i> SoloLearn
+              </a>
+              <a href="https://www.geeksforgeeks.org" target="_blank" rel="noreferrer" className="platform-badge card">
+                <i className="fas fa-terminal"></i> GeeksforGeeks
+              </a>
+              <a href="https://aws.amazon.com/education/awseducate/" target="_blank" rel="noreferrer" className="platform-badge card">
+                <i className="fab fa-aws"></i> AWS Educate
+              </a>
+              <a href="https://www.simplilearn.com" target="_blank" rel="noreferrer" className="platform-badge card">
+                <i className="fas fa-certificate"></i> Simplilearn
+              </a>
+              <a href="https://www.kaggle.com" target="_blank" rel="noreferrer" className="platform-badge card">
+                <i className="fab fa-kaggle"></i> Kaggle
+              </a>
+              <a href="https://kodekloud.com" target="_blank" rel="noreferrer" className="platform-badge card">
+                <i className="fas fa-cloud"></i> KodeKloud
+              </a>
+            </div>
           </div>
         </div>
-
       </div>
-
-      <style>{`
-        @media (max-width: 1024px) {
-          .skills-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
-            gap: 1.5rem !important;
-          }
-        }
-        @media (max-width: 768px) {
-          .skills-grid {
-            grid-template-columns: 1fr !important;
-            gap: 1.5rem !important;
-          }
-        }
-      `}</style>
     </section>
   );
 }
-
-export default Skills;
