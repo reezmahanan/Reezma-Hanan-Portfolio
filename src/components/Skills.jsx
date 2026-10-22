@@ -189,6 +189,14 @@ export default function Skills() {
                   <img src="https://skillicons.dev/icons?i=postman" alt="Postman" />
                   <span>Postman</span>
                 </div>
+                <div className="skill-icon-item" title="Selenium">
+                  <img src="/screenshots/selenium.svg" alt="Selenium" />
+                  <span>Selenium</span>
+                </div>
+                <div className="skill-icon-item" title="TestNG">
+                  <img src="/screenshots/testng.png" alt="TestNG" />
+                  <span>TestNG</span>
+                </div>
                 <div className="skill-icon-item" title="NPM">
                   <img src="https://skillicons.dev/icons?i=npm" alt="NPM" />
                   <span>NPM</span>
@@ -244,6 +252,9 @@ export default function Skills() {
               </span>
               <span>
                 <i className="fas fa-brain"></i> Critical Thinking
+              </span>
+              <span>
+                <i className="fas fa-vial"></i> Automated Testing (Selenium &amp; TestNG)
               </span>
             </div>
           </div>
