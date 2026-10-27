@@ -714,7 +714,7 @@ export const openSourceData = [
     "program": "osci",
     "badge": "OSCI '26",
     "docCount": "Verified Document",
-    "title": "Open Source Community Initiative",
+    "title": "Open Source Connect India",
     "role": "Open Source Contributor",
     "slides": [
       {
